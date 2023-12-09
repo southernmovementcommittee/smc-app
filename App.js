@@ -5,6 +5,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Southern Movement Committee App</Text>
+      <Text>Event Management</Text>
       <StatusBar style="auto" />
     </View>
   );
