@@ -6,6 +6,7 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <Text style={styles.text}>Home Screen</Text>
     </View>
+      
   );
 };
 
