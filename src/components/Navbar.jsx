@@ -1,5 +1,5 @@
-import HomeScreen from '../screens/HomeScreen';
-import EventsScreen from '../screens/EventsScreen';
+import { HomeStackNavigator } from '../routes/HomeStackNavigator';
+import { EventsStackNavigator } from '../routes/EventsStackNavigator';
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
@@ -48,8 +48,8 @@ export const Navbar = () => {
     })}
       
     >
-      <Tab.Screen name='Home' component={HomeScreen} />
-      <Tab.Screen name='Events' component={EventsScreen} />
+      <Tab.Screen name='Home' component={HomeStackNavigator} />
+      <Tab.Screen name='Events' component={EventsStackNavigator} />
     </Tab.Navigator>
   );
 };
