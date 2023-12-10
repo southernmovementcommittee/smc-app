@@ -16,6 +16,8 @@ export const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 25,
     alignItems: 'center',
+    borderColor: '#FFD600',
+    borderWidth: 2,
   },
   secondaryButton: {
     alignSelf: 'stretch', // Flexbox width (stretches to the parent container)
@@ -25,6 +27,8 @@ export const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 25,
     alignItems: 'center',
+    borderColor: '#000',
+    borderWidth: 2,
   },
   buttonContainer: {
     marginVertical: 30
