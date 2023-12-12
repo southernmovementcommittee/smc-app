@@ -3,7 +3,7 @@ import { View, TextInput, Text, TouchableOpacity, Image  } from 'react-native';
 import { styles } from './CreateAccountScreenCSS';
 const smclogo = require('../../assets/images/smclogo.png');
 
-const CreateAccountScreen = ({ navigation }) => {
+const CreateAccountScreen3 = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -21,4 +21,4 @@ const CreateAccountScreen = ({ navigation }) => {
 };
 
 
-export default CreateAccountScreen;
+export default CreateAccountScreen3;
