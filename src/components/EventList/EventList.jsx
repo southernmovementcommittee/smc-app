@@ -10,30 +10,41 @@ import { useRouter } from 'expo-router'
 
 import EventCard from '../EventCard/EventCard'
 
-const EventList = () => {
+import mockData from '../../../MOCK_DATA'
+import { ScrollView } from 'react-native-web'
+
+const EventList = ({navigation, route}) => {
     const router = useRouter()
     const isLoading = false;
     const error = false;
+    const data = mockData
+
+    const [selectedEvent, setSelectedEvent] = useState()
+
+    console.log(data)
 
     return (
-        <View>
+        <ScrollView>
             <View>
-                {isLoading ? (
-                    <ActivityIndicator size="large" />
-                ) : error ? (
-                    <Text>Something went wrong</Text>
-                ) : (
-                    <FlatList
-                        data={[1, 2, 3, 4, 5, 6, 7, 8]}
-                        renderItem={() => (
+                <View>
+                    {isLoading ? (
+                        <ActivityIndicator size="large" />
+                    ) : error ? (
+                        <Text>Something went wrong</Text>
+                    ) : (
+                        data?.map((event) => (
                             <EventCard
-
+                                event={event}
+                                key={`upcoming-event-${event?.id}`}
+                                navigation={navigation}
+                                route={route}
                             />
-                        )}
-                    />
-                )}
+                        ))
+                            
+                    )}
+                </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

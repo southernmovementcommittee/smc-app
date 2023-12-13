@@ -14,16 +14,6 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "fonts": [
-      "./assets/fonts/DrukWide-Bold-Trial.otf",
-      "./assets/fonts/DrukWide-BoldItalic-Trial.otf",
-      "./assets/fonts/DrukWide-Heavy-Trial.otf",
-      "./assets/fonts/DrukWide-HeavyItalic-Trial.otf",
-      "./assets/fonts/DrukWide-Medium-Trial.otf",
-      "./assets/fonts/DrukWide-MediumItalic-Trial.otf",
-      "./assets/fonts/DrukWide-Super-Trial.otf",
-      "./assets/fonts/DrukWide-SuperItalic-Trial.otf"
-    ],
     "ios": {
       "supportsTablet": true
     },

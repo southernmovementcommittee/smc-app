@@ -2,10 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import EventList from '../components/EventList/EventList';
 
-const EventsScreen = () => {
+const EventsScreen = ({navigation, route}) => {
   return (
     <View style={styles.container}>
-      <EventList />
+      <EventList
+        navigation={navigation}
+        route={route}
+      />
     </View>
   );
 };

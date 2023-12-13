@@ -4,7 +4,6 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 
 import { Navbar } from './src/components/Navbar';
 
-
 export default function App() {
   return (
     <NavigationContainer>
