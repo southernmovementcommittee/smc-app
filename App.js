@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
-
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+
 
 import { Navbar } from './src/components/Navbar';
 
