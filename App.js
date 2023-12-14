@@ -1,14 +1,12 @@
+import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-
-
-import { Navbar } from './src/components/Navbar';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Navbar />
-    </NavigationContainer>
+    <View style={styles.container}>
+      <Text>Southern Movement Committee App</Text>
+      <StatusBar style="auto" />
+    </View>
   );
 }
 
