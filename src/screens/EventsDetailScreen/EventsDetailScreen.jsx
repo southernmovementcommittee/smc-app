@@ -18,7 +18,6 @@ const EventDetailsScreen = ({route, navigation }) => {
             <ScrollView>
                 <Text>Event Details for: {eventId}</Text>
                 <Text>{Title}</Text>
-
             </ScrollView>
         </SafeAreaView>
     )

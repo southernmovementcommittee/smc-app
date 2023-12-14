@@ -17,11 +17,11 @@ const EventList = ({navigation, route}) => {
     const router = useRouter()
     const isLoading = false;
     const error = false;
-    const data = mockData
+    const events = mockData
 
     const [selectedEvent, setSelectedEvent] = useState()
 
-    console.log(data)
+    console.log(events)
 
     return (
         <ScrollView>
@@ -32,14 +32,24 @@ const EventList = ({navigation, route}) => {
                     ) : error ? (
                         <Text>Something went wrong</Text>
                     ) : (
-                        data?.map((event) => (
+                        <FlatList
+                        data={events}    
+                        renderItem={({item}) => (
+                            <TouchableOpacity onPress={() => navigation.navigate('EventsDetailsScreen', 
+                            {
+                                eventId: item.id, 
+                                Title: item.event_title
+                                })}>
                             <EventCard
-                                event={event}
-                                key={`upcoming-event-${event?.id}`}
+                                event={item}
+                                key={`upcoming-event-${item?.id}`}
                                 navigation={navigation}
                                 route={route}
-                            />
-                        ))
+                                />
+                            </TouchableOpacity>
+                        )}
+                        keyExtractor={item => item.id.toString()}
+                        />
                             
                     )}
                 </View>
@@ -49,3 +59,28 @@ const EventList = ({navigation, route}) => {
 }
 
 export default EventList
+
+{/* <ScrollView>
+<View>
+    {isLoading ? (
+        <ActivityIndicator size="large" />
+        ) : error ? (
+            <Text>Something went wrong</Text>
+            ) : (
+                <FlatList
+                event={events}
+                renderItem={({ item }) => (
+                    <TouchableOpacity onPress={() => navigation.navigate('EventDetails', { eventId: item.id })}>
+                    <EventCard
+                    event={item}
+                    key={`upcoming-event-${item?.id}`}
+                    navigation={navigation}
+                    route={route}
+                    />
+                </TouchableOpacity>
+            )}
+            keyExtractor={item => item.id.toString()}
+            />
+            )}
+</View>
+</ScrollView> */}
