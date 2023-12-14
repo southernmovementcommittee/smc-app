@@ -10,8 +10,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   input: {
-    padding: 10,
-    margin: 10,
+    marginBottom: 10,
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 25,
@@ -20,40 +19,62 @@ export const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   shortInput: {
-    padding: 10,
-    margin: 10,
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 25,
     padding: 15,
     backgroundColor: '#f5fcff',
-    flex: 1,
-    minHeight: 50
+    minHeight: 50,
+    minWidth: 140,
   },
   shortInputContainer: {
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    maxHeight: 50,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    // borderStyle: 'solid',
+    // borderWidth: 2,
+    // borderColor: 'black',
+  },
+  formContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    minWidth: 300,
+    // borderStyle: 'solid',
+    // borderWidth: 2,
+    // borderColor: 'black',
+  },
+  text: {
+    fontSize: 22,
+    textAlign: 'center',
+  },
+  textContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 20,
+    alignSelf: 'stretch'
   },
   header: {
     fontWeight: 'bold',
     fontSize: 26,
-    marginVertical: 20,
+    marginVertical: 10,
+    textAlign: 'center',
+    marginBottom: 20
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignSelf: 'stretch'
   },
   primaryButton: {
     alignSelf: 'stretch', // Flexbox width (stretches to the parent container)
-    marginHorizontal: 40, // To prevent stretching to the very edges
-    marginTop:25,
     marginBottom: 40,
     backgroundColor: '#000',
-    padding: 15,
-    borderRadius: 25,
-    alignItems: 'center',
-  },
-  secondaryButton: {
-    alignSelf: 'stretch', // Flexbox width (stretches to the parent container)
-    marginHorizontal: 40, // To prevent stretching to the very edges
-    marginVertical: 5,
-    backgroundColor: '#FFD600',
     padding: 15,
     borderRadius: 25,
     alignItems: 'center',
@@ -70,16 +91,30 @@ export const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    paddingTop: 20,
-    marginBottom: 80,
-    // borderStyle: 'solid',
-    // borderWidth: 2,
-    // borderColor: 'black',
+    marginTop:50,
+    maxHeight: 100,
   },  
   image: {
-    width: 75,
-    height: 75,
+    width: 100,
+    height: 100,
     flexDirection: 'column',
     justifyContent: 'flex-start'
   },
+  checkbox: {
+    borderColor: 'black',
+    height:25,
+    width:25,
+  },
+  checkboxContainer: {
+    marginHorizontal: 20
+  },
+  checkboxesContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    marginBottom: 30,
+    // borderStyle: 'solid',
+    // borderWidth: 2,
+    // borderColor: 'black',
+  }
 });

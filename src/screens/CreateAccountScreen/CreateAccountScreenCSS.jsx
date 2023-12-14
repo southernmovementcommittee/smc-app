@@ -9,25 +9,22 @@ export const styles = StyleSheet.create({
     backgroundColor: '#f5fcff',
   },
   input: {
-    width: '80%',
-    padding: 10,
-    margin: 10,
+    marginVertical: 10,
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 25,
     padding: 15,
     backgroundColor: '#f5fcff',
+    justifyContent: 'center'
   },
   header: {
     fontWeight: 'bold',
     fontSize: 26,
-    marginVertical: 20,
+    marginBottom: 20,
   },
   primaryButton: {
     alignSelf: 'stretch', // Flexbox width (stretches to the parent container)
-    marginHorizontal: 40, // To prevent stretching to the very edges
     marginTop:25,
-    marginBottom: 40,
     backgroundColor: '#000',
     padding: 15,
     borderRadius: 25,
@@ -54,15 +51,25 @@ export const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    paddingTop: 20,
+    maxHeight: 300,
     // borderStyle: 'solid',
     // borderWidth: 2,
     // borderColor: 'black',
   },  
   image: {
-    width: 250,
-    height: 250,
+    width: 300,
+    height: 300,
     flexDirection: 'column',
     justifyContent: 'flex-start'
   },
+  formContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
+    maxHeight: 420,
+    minWidth: 300,
+    // borderStyle: 'solid',
+    // borderWidth: 2,
+    // borderColor: 'black',
+  }
 });
