@@ -8,14 +8,18 @@ import AuthLandingScreen from '../screens/AuthLandingScreen/AuthLandingScreen';
 
 const Stack = createStackNavigator();
 
-export const AuthStackNavigator = () => {
+export const AuthStackNavigator = ({ setIsAuth }) => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="AuthLanding" options={{ headerShown: false }} component={AuthLandingScreen} />
-      <Stack.Screen name="Login" options={{ headerShown: false }} component={LoginScreen} />
+      <Stack.Screen name="Login" options={{ headerShown: false }}>
+        {props => <LoginScreen {...props} setIsAuth={setIsAuth} />}
+      </Stack.Screen>
       <Stack.Screen name="CreateAccount" options={{ headerShown: false }} component={CreateAccountScreen} />
       <Stack.Screen name="Step2" options={{ headerShown: false }} component={CreateAccountScreen2} />
-      <Stack.Screen name="Step3" options={{ headerShown: false }} component={CreateAccountScreen3} />
+      <Stack.Screen name="Step3" options={{ headerShown: false }}>
+        {props => <CreateAccountScreen3 {...props} setIsAuth={setIsAuth} />}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 }

@@ -12,19 +12,15 @@ export default function App() {
   const [isAuth, setIsAuth] = useState(false);
 
   return (
-    <AuthContext.Provider value={(isAuth, setIsAuth)}>
       <NavigationContainer>
-            <Navbar />
-        
-        {/* {
+        {
         isAuth ? (
             <Navbar />
         ) : (
-            <AuthStackNavigator />
+            <AuthStackNavigator setIsAuth={setIsAuth} />
           )
-        } */}
+        }
       </NavigationContainer>
-    </AuthContext.Provider>
   );
 }
 
