@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { View, TextInput, Text, TouchableOpacity, Image  } from 'react-native';
 import { styles } from './CreateAccountScreenCSS';
+import { AuthContext } from '../../../App';
 const smclogo = require('../../assets/images/smclogo.png');
 
+
 const CreateAccountScreen3 = ({ navigation }) => {
+  // const { isAuth, setIsAuth } = useContext(AuthContext);
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -13,8 +16,8 @@ const CreateAccountScreen3 = ({ navigation }) => {
       <TextInput placeholder="Email Address" style={styles.input} />
       <TextInput placeholder="Password" secureTextEntry style={styles.input} />
       <TextInput placeholder="Confirm Password" secureTextEntry style={styles.input} />
-      <TouchableOpacity style={styles.primaryButton} onPress={() => navigation.navigate('Step2')}>
-        <Text style={styles.primaryButtonText} >Continue to Step 2</Text>
+      <TouchableOpacity style={styles.primaryButton} onPress={() => console.log('set isAuth')}>
+        <Text style={styles.primaryButtonText} >CREATE NEW ACCOUNT</Text>
       </TouchableOpacity>
     </View>
   );

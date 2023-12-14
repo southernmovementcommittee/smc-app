@@ -24,7 +24,7 @@ const CreateAccountScreen2 = ({ navigation }) => {
       <TextInput placeholder="POSTAL/ZIP CODE" style={styles.shortInput} />
       <Text style={styles.header} >ARE YOU BLACK?</Text>
 
-      <TouchableOpacity style={styles.primaryButton} onPress={() => navigation.navigate('Step2')}>
+      <TouchableOpacity style={styles.primaryButton} onPress={() => navigation.navigate('Step3')}>
         <Text style={styles.primaryButtonText} >Continue to Step 3</Text>
       </TouchableOpacity>
     </ScrollView>
