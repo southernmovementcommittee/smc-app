@@ -8,8 +8,18 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f5fcff',
   },
+  formContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    minWidth: 300,
+    // borderStyle: 'solid',
+    // borderWidth: 2,
+    // borderColor: 'black',
+  },
   input: {
-    width: '80%',
+    alignSelf: 'stretch',
     padding: 10,
     margin: 10,
     borderWidth: 1,
@@ -19,8 +29,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#f5fcff',
   },
   textArea: {
-    width: '80%',
-    // padding: 10,
+    alignSelf: 'stretch',
     textAlign: 'auto',
     margin: 10,
     borderWidth: 1,
@@ -28,7 +37,7 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
     paddingBottom: 100,
     paddingLeft: 15,
-    height: 150,
+    height: 200,
     backgroundColor: '#f5fcff',
   },
   header: {
@@ -36,9 +45,14 @@ export const styles = StyleSheet.create({
     fontSize: 26,
     marginVertical: 20,
   },
+  accentHeader: {
+    fontWeight: 'bold',
+    fontSize: 26,
+    marginVertical: 20,
+    color: '#FFD600'
+  },
   primaryButton: {
     alignSelf: 'stretch', // Flexbox width (stretches to the parent container)
-    marginHorizontal: 40, // To prevent stretching to the very edges
     marginTop:25,
     marginBottom: 40,
     backgroundColor: '#000',
@@ -67,15 +81,32 @@ export const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    paddingTop: 20,
+    maxHeight: 150,
+    minWidth: 150,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 100,
+    backgroundColor: '#FFD600',
+    marginTop: 70,
     // borderStyle: 'solid',
     // borderWidth: 2,
     // borderColor: 'black',
-  },  
+  },
+  arrowContainer: {
+    position: 'absolute',
+    right: -10,
+    
+  },
+  arrow: {
+    // borderColor: '#FFD600',
+    // borderStyle: 'solid',
+    // borderWidth: 3,
+  },
   image: {
     width: 125,
     height: 125,
-    flexDirection: 'column',
-    justifyContent: 'flex-start'
+    // flexDirection: 'column',
+    // justifyContent: 'flex-start'
   },
 });
