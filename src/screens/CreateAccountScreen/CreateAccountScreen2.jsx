@@ -18,17 +18,49 @@ const CreateAccountScreen2 = ({ navigation }) => {
       <Text style={styles.header} >CREATE NEW ACCOUNT</Text>
       <View style={styles.formContainer}>
         <View style={styles.shortInputContainer}>
-          <TextInput placeholder="FIRST NAME" style={styles.shortInput} />
-          <TextInput placeholder="LAST NAME" style={styles.shortInput} />
+          <TextInput 
+            placeholder="FIRST NAME"
+            placeholderTextColor="#808080"
+            style={styles.shortInput}
+          />
+          <TextInput 
+            placeholder="LAST NAME"
+            placeholderTextColor="#808080"
+            style={styles.shortInput}
+          />
         </View>
-        <TextInput placeholder="PHONE NUMBER" secureTextEntry style={styles.input} />
-        <TextInput placeholder="STREET ADDRESS" secureTextEntry style={styles.input} />
-        <TextInput placeholder="STREET ADDRESS 2" secureTextEntry style={styles.input} />
+        <TextInput 
+          placeholder="PHONE NUMBER"
+          placeholderTextColor="#808080"
+          secureTextEntry style={styles.input} 
+        />
+        <TextInput 
+          placeholder="STREET ADDRESS"
+          placeholderTextColor="#808080"
+          secureTextEntry style={styles.input}
+        />
+        <TextInput
+          placeholder="STREET ADDRESS 2"
+          placeholderTextColor="#808080"
+          secureTextEntry style={styles.input} 
+        />
         <View style={styles.shortInputContainer}>
-          <TextInput placeholder="CITY" style={styles.shortInput} />
-          <TextInput placeholder="STATE" style={styles.shortInput} />
+          <TextInput
+            placeholder="CITY"
+            placeholderTextColor="#808080"
+            style={styles.shortInput}
+          />
+          <TextInput
+            placeholder="STATE"
+            placeholderTextColor="#808080"
+            style={styles.shortInput}
+          />
         </View>
-        <TextInput placeholder="POSTAL/ZIP CODE" style={styles.shortInput} />
+        <TextInput
+          placeholder="POSTAL/ZIP CODE"
+          placeholderTextColor="#808080"
+          style={styles.shortInput} 
+        />
         <View style={styles.textContainer}>
           <Text style={styles.text} >ARE YOU BLACK?</Text>
         </View>

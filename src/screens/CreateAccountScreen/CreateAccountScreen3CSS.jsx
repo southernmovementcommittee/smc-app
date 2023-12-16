@@ -18,6 +18,9 @@ export const styles = StyleSheet.create({
     // borderWidth: 2,
     // borderColor: 'black',
   },
+  pressable: {
+    alignSelf: 'stretch',
+  },
   input: {
     alignSelf: 'stretch',
     padding: 10,
@@ -35,7 +38,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 15,
-    paddingBottom: 100,
+    paddingBottom: 30,
     paddingLeft: 15,
     height: 200,
     backgroundColor: '#f5fcff',

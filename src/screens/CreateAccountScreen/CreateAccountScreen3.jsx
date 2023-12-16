@@ -1,28 +1,27 @@
 import React, {useState} from 'react';
-import { View, TextInput, Text, TouchableOpacity, Image, Pressable } from 'react-native';
-// import DatePicker from '@react-native-community/datetimepicker';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { View, TextInput, Text, TouchableOpacity, Image, Pressable, Platform, Button } from 'react-native';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { styles } from './CreateAccountScreen3CSS';
 const smclogo = require('../../assets/images/smclogo.png');
 
 const CreateAccountScreen3 = ({ navigation }) => {
-  const [date, setDate] = useState(new Date());
+  const date_ = new Date();
+  
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [date, setDate] = useState('');
 
-  const onDateChange = ({ type }, selectedDate) => {
-    if (type == 'set') {
-      const currentDate = selectedDate || dateOfBirth;
-      setDate(currentDate);
-      setShowDatePicker(Platform.OS === 'ios');
-    } else {
-      toggleDatePicker();
+
+  const openAndroidDatePicker = () => {
+    if (Platform.OS === 'android') {
+      setShowDatePicker(true);
     }
-  };
-
-  const toggleDatePicker = () => {
-    setShowDatePicker(!showDatePicker)
   }
+
+  const handleConfirm = (selectedDate) => {
+    setDate(selectedDate.toDateString());
+    setShowDatePicker(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -36,35 +35,30 @@ const CreateAccountScreen3 = ({ navigation }) => {
         <Text style={styles.accentHeader}>Upload </Text>your image here
       </Text>
       <View style={styles.formContainer}>
-        <TextInput placeholder="OCCUPATION" style={styles.input} />
-        {!showDatePicker && (
-          <Pressable onPress={()=> toggleDatePicker}>
+        <TextInput
+          placeholder="OCCUPATION"
+          placeholderTextColor="#808080"
+          style={styles.input}
+        />
+        <Pressable style={styles.pressable} onPress={openAndroidDatePicker}>
           <TextInput
             placeholder="DATE OF BIRTH"
-            style={styles.input} 
-            editable={false}  
+            placeholderTextColor="#808080"
+            value={date}
+            style={styles.input}
+            editable={false}
+            onPressIn={() => setShowDatePicker(true)}
           />
         </Pressable>
-        )}
-        {showDatePicker && (
-        <DateTimePicker
-            date={date}
-            display="spinner"
-            mode="date"
-            value={date}
-            onChange={onChange}
-          // style={styles.input}
-          placeholder="DATE OF BIRTH"
-          format="MM-DD-YYYY"
-          minDate="2016-05-01"
-          maxDate="2022-06-01"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          onDateChange={(date) => onDateChange(date)}
-      />
-      )}
+        <DateTimePickerModal
+          isVisible={showDatePicker}
+          mode="date"
+          onConfirm={handleConfirm}
+          onCancel={() => setShowDatePicker(false)}
+        />
         <TextInput
           placeholder="BIO"
+          placeholderTextColor="#808080"
           multiline={true}
           numberOfLines={4}
           style={styles.textArea} />
