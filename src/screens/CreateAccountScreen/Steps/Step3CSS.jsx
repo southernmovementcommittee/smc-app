@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     minWidth: 300,
+    maxHeight: 475,
     // borderStyle: 'solid',
     // borderWidth: 2,
     // borderColor: 'black',
@@ -100,7 +101,6 @@ export const styles = StyleSheet.create({
   arrowContainer: {
     position: 'absolute',
     right: -10,
-    
   },
   arrow: {
     // borderColor: '#FFD600',

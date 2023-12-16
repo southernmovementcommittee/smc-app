@@ -7,6 +7,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f5fcff',
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderColor: 'black',
   },
   input: {
     marginVertical: 10,
@@ -71,5 +74,15 @@ export const styles = StyleSheet.create({
     // borderStyle: 'solid',
     // borderWidth: 2,
     // borderColor: 'black',
-  }
+  },
+  paginationContainer: {
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    maxHeight: 200,
+    top: 780,
+    // borderStyle: 'solid',
+    // borderWidth: 2,
+    // borderColor: 'black',
+  },
 });
