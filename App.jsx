@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
 import { AuthStackNavigator } from './src/routes/AuthStackNavigator';
 import React, { useState } from 'react';
 

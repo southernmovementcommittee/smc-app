@@ -2,14 +2,14 @@ import { StyleSheet } from 'react-native';
 
 
 export const styles = StyleSheet.create({
-  container: {
+  container2: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f5fcff',
     paddingHorizontal: 20,
   },
-  input: {
+  input2: {
     marginBottom: 10,
     borderWidth: 1,
     borderColor: 'gray',
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#f5fcff',
     alignSelf: 'stretch',
   },
-  shortInput: {
+  shortInput2: {
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 25,
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     minHeight: 50,
     minWidth: 140,
   },
-  shortInputContainer: {
+  shortInputContainer2: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     // borderWidth: 2,
     // borderColor: 'black',
   },
-  formContainer: {
+  formContainer2: {
     flex: 1,
     justifyContent: 'flex-start',
     flexDirection: 'column',
@@ -49,29 +49,29 @@ export const styles = StyleSheet.create({
     // borderWidth: 2,
     // borderColor: 'black',
   },
-  text: {
+  text2: {
     fontSize: 22,
     textAlign: 'center',
   },
-  textContainer: {
+  textContainer2: {
     flexDirection: 'row',
     justifyContent: 'center',
     marginVertical: 20,
     alignSelf: 'stretch'
   },
-  header: {
+  header2: {
     fontWeight: 'bold',
     fontSize: 26,
     marginVertical: 10,
     textAlign: 'center',
     marginBottom: 20
   },
-  headerContainer: {
+  headerContainer2: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignSelf: 'stretch'
   },
-  primaryButton: {
+  primaryButton2: {
     alignSelf: 'stretch', // Flexbox width (stretches to the parent container)
     marginBottom: 40,
     backgroundColor: '#000',
@@ -79,36 +79,36 @@ export const styles = StyleSheet.create({
     borderRadius: 25,
     alignItems: 'center',
   },
-  primaryButtonText: {
+  primaryButtonText2: {
     color: '#FFD600',
     fontSize: 18,
     fontWeight: 'bold',
   },
-  secondaryButtonText: {
+  secondaryButtonText2: {
     color: '#000',
     fontSize: 18,
     fontWeight: 'bold'
   },
-  imageContainer: {
+  imageContainer2: {
     flex: 1,
     marginTop:50,
     maxHeight: 100,
   },  
-  image: {
+  image2: {
     width: 100,
     height: 100,
     flexDirection: 'column',
     justifyContent: 'flex-start'
   },
-  checkbox: {
+  checkbox2: {
     borderColor: 'black',
     height:25,
     width:25,
   },
-  checkboxContainer: {
+  checkboxContainer2: {
     marginHorizontal: 20
   },
-  checkboxesContainer: {
+  checkboxesContainer2: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignSelf: 'stretch',

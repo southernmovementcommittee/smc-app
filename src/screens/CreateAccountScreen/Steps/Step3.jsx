@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import { View, TextInput, Text, TouchableOpacity, Image, Pressable, Platform, Button } from 'react-native';
+import React, { useState } from 'react';
+import { View, TextInput, Text, TouchableOpacity, Image, Pressable, Platform } from 'react-native';
+
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import { styles } from './CreateAccountScreen3CSS';
-const smclogo = require('../../assets/images/smclogo.png');
+import { styles } from './Step3CSS';
+const smclogo = require('../../../assets/images/smclogo.png');
 
-const CreateAccountScreen3 = ({ navigation }) => {
-  const date_ = new Date();
+export const Step3 = ({setIsAuth}) => {
   
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [date, setDate] = useState('');
@@ -24,7 +24,7 @@ const CreateAccountScreen3 = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={smclogo} />
         <View style={styles.arrowContainer}>
@@ -62,13 +62,10 @@ const CreateAccountScreen3 = ({ navigation }) => {
           multiline={true}
           numberOfLines={4}
           style={styles.textArea} />
-        <TouchableOpacity style={styles.primaryButton} onPress={() => navigation.navigate('Step2')}>
+        <TouchableOpacity style={styles.primaryButton} onPress={() => setIsAuth(true)}>
           <Text style={styles.primaryButtonText} >CREATE ACCOUNT</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </>
   );
 };
-
-
-export default CreateAccountScreen3;
