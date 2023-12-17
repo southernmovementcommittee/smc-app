@@ -85,4 +85,14 @@ export const styles = StyleSheet.create({
     // borderWidth: 2,
     // borderColor: 'black',
   },
+  androidPaginationContainer: {
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    maxHeight: 200,
+    top: 810,
+    // borderStyle: 'solid',
+    // borderWidth: 2,
+    // borderColor: 'black',
+  },
 });

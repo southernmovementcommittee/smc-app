@@ -4,7 +4,6 @@ import CheckBox from 'expo-checkbox';
 
 import { styles } from './Step2CSS';
 
-
 const smclogo = require('../../../assets/images/smclogo.png');
 
 export const Step2 = ({ goToStep3 }) => {

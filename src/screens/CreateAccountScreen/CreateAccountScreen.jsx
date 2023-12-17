@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-import { View, TouchableOpacity, Animated } from 'react-native';
+import { View, TouchableOpacity, Animated, Platform } from 'react-native';
 
 import { Step1 } from './Steps/Step1';
 import { Step2 } from './Steps/Step2';
@@ -12,6 +12,7 @@ import { styles } from './Steps/Step1CSS';
 const CreateAccountScreen = ({ setIsAuth }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const animatedValues = useRef([1, 2, 3].map(() => new Animated.Value(1))).current;
+  const isAndroid = Platform.OS === 'android';
 
   useEffect(() => {
     Animated.timing(animatedValues[currentStep - 1], {
@@ -49,7 +50,7 @@ const CreateAccountScreen = ({ setIsAuth }) => {
   return (
     <View style={styles.container}>
       {renderStep()}
-      <View style={styles.paginationContainer}>
+      <View style={isAndroid ? styles.androidPaginationContainer : styles.paginationContainer}>
         {[1, 2, 3].map((step, index) => (
           <TouchableOpacity key={step} onPress={() => goToStep(step)}>
             <PaginationDot animatedValues={animatedValues} index={index} selected={step === currentStep}/>
