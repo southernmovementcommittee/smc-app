@@ -45,6 +45,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     minWidth: 300,
+    maxHeight: 620,
     // borderStyle: 'solid',
     // borderWidth: 2,
     // borderColor: 'black',
@@ -91,8 +92,10 @@ export const styles = StyleSheet.create({
   },
   imageContainer2: {
     flex: 1,
-    marginTop:50,
     maxHeight: 100,
+    // borderStyle: 'solid',
+    // borderWidth: 2,
+    // borderColor: 'black',
   },  
   image2: {
     width: 100,

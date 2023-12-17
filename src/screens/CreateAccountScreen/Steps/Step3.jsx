@@ -11,9 +11,10 @@ export const Step3 = ({setIsAuth}) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [date, setDate] = useState('');
 
+  const isAndroid = Platform.OS === 'android';
 
   const openAndroidDatePicker = () => {
-    if (Platform.OS === 'android') {
+    if (isAndroid) {
       setShowDatePicker(true);
     }
   }
@@ -61,7 +62,7 @@ export const Step3 = ({setIsAuth}) => {
           placeholderTextColor="#808080"
           multiline={true}
           numberOfLines={4}
-          style={styles.textArea} />
+          style={ isAndroid ? styles.androidTextArea : styles.textArea} />
         <TouchableOpacity style={styles.primaryButton} onPress={() => setIsAuth(true)}>
           <Text style={styles.primaryButtonText} >CREATE ACCOUNT</Text>
         </TouchableOpacity>
