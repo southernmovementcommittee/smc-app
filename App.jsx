@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
 import { AuthStackNavigator } from './src/routes/AuthStackNavigator';
 import React, { useState } from 'react';
 
@@ -12,19 +12,15 @@ export default function App() {
   const [isAuth, setIsAuth] = useState(false);
 
   return (
-    <AuthContext.Provider value={(isAuth, setIsAuth)}>
       <NavigationContainer>
-            <Navbar />
-        
-        {/* {
+        {
         isAuth ? (
             <Navbar />
         ) : (
-            <AuthStackNavigator />
+            <AuthStackNavigator setIsAuth={setIsAuth} />
           )
-        } */}
+        }
       </NavigationContainer>
-    </AuthContext.Provider>
   );
 }
 

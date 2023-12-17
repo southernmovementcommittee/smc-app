@@ -1,21 +1,37 @@
-import React from 'react';
-import { View, TextInput, Text, TouchableOpacity, Image  } from 'react-native';
-import { styles } from './CreateAccountScreenCSS';
-const smclogo = require('../../assets/images/smclogo.png');
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { Step1 } from './Steps/Step1';
+import { Step2 } from './Steps/Step2';
+import { Step3 } from './Steps/Step3';
+import { styles } from './Steps/Step1CSS';
 
-const CreateAccountScreen = ({ navigation }) => {
+const CreateAccountScreen = ({ setIsAuth }) => {
+  const [step1, setStep1] = useState(true);
+  const [step2, setStep2] = useState(false);
+  const [step3, setStep3] = useState(false);
+
+  const goToStep2 = () => {
+    setStep1(false);
+    setStep3(false);
+    setStep2(true);
+  };
+
+  const goToStep3 = () => {
+    setStep1(false);
+    setStep2(false);
+    setStep3(true);
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={smclogo} />
-      </View>
-      <Text style={styles.header} >CREATE NEW ACCOUNT</Text>
-      <TextInput placeholder="Email Address" style={styles.input} />
-      <TextInput placeholder="Password" secureTextEntry style={styles.input} />
-      <TextInput placeholder="Confirm Password" secureTextEntry style={styles.input} />
-      <TouchableOpacity style={styles.primaryButton} onPress={() => navigation.navigate('Step2')}>
-        <Text style={styles.primaryButtonText} >Continue to Step 2</Text>
-      </TouchableOpacity>
+      {
+        step1 ?
+        (<Step1 goToStep2={goToStep2} />) :
+          step2 ?
+            (<Step2 goToStep3={goToStep3} />) :
+            step3 ?
+              (<Step3 setIsAuth={setIsAuth} />) : null
+      }
     </View>
   );
 };

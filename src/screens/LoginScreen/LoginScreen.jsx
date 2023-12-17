@@ -5,7 +5,7 @@ import { styles } from './LoginScreenCSS';
 const smclogo = require('../../assets/images/smclogo.png');
 
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation, setIsAuth }) => {
   return (
     <View style={styles.container}>
        <View style={styles.imageContainer}>
@@ -16,9 +16,12 @@ const LoginScreen = ({ navigation }) => {
       </View>
       <TextInput placeholder="EMAIL ADDRESS" style={styles.input} />
       <TextInput placeholder="PASSWORD" secureTextEntry style={styles.input} />
-      <TouchableOpacity title="LOG IN" onPress={() => navigation.navigate('Login')} />
       <View>
-      <TouchableOpacity style={styles.primaryButton} title="Login" onPress={() => navigation.navigate('CreateAccount')}>
+        <TouchableOpacity
+          style={styles.primaryButton}
+          title="Login"
+          onPress={() => setIsAuth(true)}
+        >
           <Text style={styles.primaryButtonText}>LOG IN</Text>
         </TouchableOpacity>
       </View>

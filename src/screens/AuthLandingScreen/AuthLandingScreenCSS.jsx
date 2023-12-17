@@ -45,14 +45,15 @@ export const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    paddingTop: 20,
+    marginTop: 60,
+    maxHeight: 450,
     // borderStyle: 'solid',
     // borderWidth: 2,
     // borderColor: 'black',
   },  
   image: {
-    width: 250,
-    height: 250,
+    width: 300,
+    height: 300,
     flexDirection: 'column',
     justifyContent: 'flex-start'
   },
