@@ -31,14 +31,30 @@ const EventList = ({navigation, route}) => {
                     ) : error ? (
                         <Text>Something went wrong</Text>
                     ) : (
-                        data?.map((event) => (
+                        <FlatList
+                        data={events}    
+                        renderItem={({item}) => (
+                            <TouchableOpacity onPress={() => navigation.navigate('EventsDetailsScreen', 
+                                {
+                                eventId: item.id, 
+                                eventImage: item.image,
+                                eventDate: item.date_time,
+                                eventTime: item.time,
+                                eventLocation: item.event_location,
+                                eventTitle: item.event_title,
+                                eventDescription: item.event_description,
+                                })}>
                             <EventCard
                                 event={event}
                                 key={`upcoming-event-${event?.id}`}
                                 navigation={navigation}
                                 route={route}
                             />
-                        ))
+                        </TouchableOpacity>
+
+                        
+                        )} 
+                      />  
                             
                     )}
                 </View>
