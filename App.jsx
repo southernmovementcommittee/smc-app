@@ -10,17 +10,18 @@ export const AuthContext = React.createContext();
 
 export default function App() {
   const [isAuth, setIsAuth] = useState(false);
+  const [user, setUser] = useState({});
 
   return (
-      <NavigationContainer>
+    <NavigationContainer>
         {
         isAuth ? (
-            <Navbar />
+            <Navbar setIsAuth={setIsAuth} user={user} />
         ) : (
-            <AuthStackNavigator setIsAuth={setIsAuth} />
+            <AuthStackNavigator setIsAuth={setIsAuth} setUser={setUser} />
           )
         }
-      </NavigationContainer>
+    </NavigationContainer>
   );
 }
 

@@ -23,7 +23,7 @@ if (isAndroid) {
   }
 }
 
-export const Navbar = () => {
+export const Navbar = ({user, setIsAuth}) => {
   return (
     <Tab.Navigator screenOptions={({ route }) => ({
       tabBarIcon: ({ color, size, focused }) => {
@@ -46,9 +46,12 @@ export const Navbar = () => {
       tabBarInactiveBackgroundColor: '#FFD600',
       tabBarShowLabel: false,
     })}
-      
     >
-      <Tab.Screen name='Home' component={HomeStackNavigator} />
+      {/* Only written this way to display user object for the time being... */}
+      <Tab.Screen name='Home'>
+        {props => <HomeStackNavigator {...props} user={user} setIsAuth={setIsAuth} />}
+      </Tab.Screen>
+      {/* <Tab.Screen name='Home' component={HomeStackNavigator} /> */}
       <Tab.Screen name='Events' component={EventsStackNavigator} />
     </Tab.Navigator>
   );
