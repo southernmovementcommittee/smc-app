@@ -10,13 +10,10 @@ import {
 
 import styles from './EventCardCss';
 
-const EventCard = ({event, selectedEvent, navigation: {navigate}}) => {
+const EventCard = ({event, navigation: {navigate}}) => {
     return (
         // create onpress that leads to details page
-            <TouchableOpacity 
-            style={styles.container}
-            onPress={() => navigate('event-details', { eventId: event?.id })}
-            >
+            <SafeAreaView style={styles.container}>
                 <View style={styles.logoContainer}>
                     <Image 
                         source={{uri: event?.image}}
@@ -34,7 +31,7 @@ const EventCard = ({event, selectedEvent, navigation: {navigate}}) => {
                         <Text style={styles.fontText}>Event Availability</Text>
                     </View>
                 </View>
-            </TouchableOpacity>
+            </SafeAreaView>
     )
 }
 

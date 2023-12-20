@@ -4,14 +4,14 @@ import { COLORS, SIZES } from "../../constants";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: 430,
+        maxWidth: '100%',
         maxHeight: '100%',
         backgroundColor: "#ffffff",
       },
       eventHeaderContainer:{
         flexDirection: 'row',
         alignItems: 'center',
-        width: 430,
+        maxWidth: '100%',
         height: 428,
       },
       logoImage: {
@@ -30,11 +30,14 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         borderTopColor: '#ddd'
       },
-      buttonFooter: {
+      rsvpButtonFooter: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        alignItems: 'center',
+        alignItems: 'stretch',
         padding: 15,
+        borderWidth: 2,
+        borderColor: 'red',
+        borderStyle: 'solid'
       },
       rsvpContainer: {
         backgroundColor: 'blue',

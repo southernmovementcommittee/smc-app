@@ -13,14 +13,13 @@ import mockData from '../../../MOCK_DATA'
 import { ScrollView } from 'react-native-web'
 
 const EventList = ({navigation, route}) => {
-    const router = useRouter()
     const isLoading = false;
     const error = false;
-    const data = mockData
+    const events = mockData
 
     const [selectedEvent, setSelectedEvent] = useState()
 
-    console.log(data)
+    console.log(events)
 
     return (
         <ScrollView>
@@ -34,7 +33,9 @@ const EventList = ({navigation, route}) => {
                         <FlatList
                         data={events}    
                         renderItem={({item}) => (
-                            <TouchableOpacity onPress={() => navigation.navigate('EventsDetailsScreen', 
+                            <TouchableOpacity onPress={() => {
+                                console.log(item.id, item.image)
+                              navigation.navigate('EventsDetailsScreen', 
                                 {
                                 eventId: item.id, 
                                 eventImage: item.image,
@@ -43,17 +44,16 @@ const EventList = ({navigation, route}) => {
                                 eventLocation: item.event_location,
                                 eventTitle: item.event_title,
                                 eventDescription: item.event_description,
-                                })}>
+                                })
+                            }}
+                            >
                             <EventCard
-                                event={event}
-                                key={`upcoming-event-${event?.id}`}
+                                event={item}
                                 navigation={navigation}
-                                route={route}
                             />
                         </TouchableOpacity>
-
-                        
                         )} 
+                        keyExtractor={item => item.id.toString()}
                       />  
                             
                     )}

@@ -24,8 +24,6 @@ const EventDetailsScreen = ({route, navigation }) => {
         eventDescription,
     } = route.params;
 
-    // const { itemId } = route.params.eventId?.id
-
     return (
             <ScrollView style={styles.container}>
                 <View>
@@ -52,7 +50,7 @@ const EventDetailsScreen = ({route, navigation }) => {
                         <Text>General Admission: </Text>
                     </View>
 
-                    <View style={styles.buttonFooter}>
+                    <View style={styles.rsvpButtonFooter}>
                         <View style={styles.rsvpContainer}>
                             <Text>35</Text>
                         </View>
