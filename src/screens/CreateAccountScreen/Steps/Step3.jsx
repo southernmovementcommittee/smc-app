@@ -6,12 +6,23 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { styles } from './Step3CSS';
 const smclogo = require('../../../assets/images/smclogo.png');
 
-export const Step3 = ({setIsAuth}) => {
+export const Step3 = ({updateUserObj}) => {
   
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [date, setDate] = useState('');
+  const [occupation, setOccupation] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [bio, setBio] = useState('');
 
   const isAndroid = Platform.OS === 'android';
+
+  const storeUserDataAndContinue = () => {
+    const currentUserData = {
+      occupation,
+      dateOfBirth,
+      bio
+    }
+    updateUserObj(currentUserData);
+  }
 
   const openAndroidDatePicker = () => {
     if (isAndroid) {
@@ -20,7 +31,7 @@ export const Step3 = ({setIsAuth}) => {
   }
 
   const handleConfirm = (selectedDate) => {
-    setDate(selectedDate.toDateString());
+    setDateOfBirth(selectedDate.toDateString());
     setShowDatePicker(false);
   };
 
@@ -40,15 +51,18 @@ export const Step3 = ({setIsAuth}) => {
           placeholder="OCCUPATION"
           placeholderTextColor="#808080"
           style={styles.input}
+          value={occupation}
+          onChangeText={text => setOccupation(text)}
         />
         <Pressable style={styles.pressable} onPress={openAndroidDatePicker}>
           <TextInput
             placeholder="DATE OF BIRTH"
             placeholderTextColor="#808080"
-            value={date}
+            value={dateOfBirth}
             style={styles.input}
             editable={false}
             onPressIn={() => setShowDatePicker(true)}
+            onChangeText={text => setDateOfBirth(text)}
           />
         </Pressable>
         <DateTimePickerModal
@@ -62,8 +76,12 @@ export const Step3 = ({setIsAuth}) => {
           placeholderTextColor="#808080"
           multiline={true}
           numberOfLines={4}
-          style={ isAndroid ? styles.androidTextArea : styles.textArea} />
-        <TouchableOpacity style={styles.primaryButton} onPress={() => setIsAuth(true)}>
+          style={isAndroid ? styles.androidTextArea : styles.textArea} 
+          value={bio}
+          onChangeText={text => setBio(text)}
+        />
+
+        <TouchableOpacity style={styles.primaryButton} onPress={storeUserDataAndContinue}>
           <Text style={styles.primaryButtonText} >CREATE ACCOUNT</Text>
         </TouchableOpacity>
       </View>

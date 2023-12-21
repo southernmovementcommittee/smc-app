@@ -7,6 +7,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f5fcff',
   },
+  textContainer: {
+    paddingHorizontal: 40,
+  },
+  text: {
+    fontWeight: 'bold',
+  },
   primaryButton: {
     alignSelf: 'stretch', // Flexbox width (stretches to the parent container)
     marginHorizontal: 40, // To prevent stretching to the very edges
