@@ -7,9 +7,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f5fcff',
-    borderStyle: 'solid',
-    borderWidth: 2,
-    borderColor: 'black',
   },
   input: {
     marginVertical: 10,
@@ -18,7 +15,26 @@ export const styles = StyleSheet.create({
     borderRadius: 25,
     padding: 15,
     backgroundColor: '#f5fcff',
-    justifyContent: 'center'
+    justifyContent: 'center',
+  },
+  errorInput: {
+    marginVertical: 10,
+    borderWidth: 1,
+    borderColor: 'red',
+    borderRadius: 25,
+    color: 'red',
+    padding: 15,
+    backgroundColor: 'pink',
+    justifyContent: 'center',
+    fontWeight: 'bold'
+  },
+  errorTextContainer: {
+    maxWidth: 300,
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 14,
+    marginHorizontal: 15,
   },
   header: {
     fontWeight: 'bold',
@@ -55,6 +71,16 @@ export const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     maxHeight: 300,
+    overflow: 'hidden',
+    // borderStyle: 'solid',
+    // borderWidth: 2,
+    // borderColor: 'black',
+  },  
+  inputFocusedImageContainer: {
+    flex: 1,
+    top: 60,
+    height: 'auto',
+    overflow: 'hidden',
     // borderStyle: 'solid',
     // borderWidth: 2,
     // borderColor: 'black',
@@ -62,25 +88,29 @@ export const styles = StyleSheet.create({
   image: {
     width: 300,
     height: 300,
-    flexDirection: 'column',
-    justifyContent: 'flex-start'
+  },
+  inputFocusedImage: {
+    width: 100,
+    height: 100,
   },
   formContainer: {
     flex: 1,
     justifyContent: 'flex-start',
     flexDirection: 'column',
-    maxHeight: 420,
+    minHeight: 120,
+    maxHeight: 400,
+    height: 'auto',
     minWidth: 300,
     // borderStyle: 'solid',
     // borderWidth: 2,
     // borderColor: 'black',
-  },
+  },  
   paginationContainer: {
     position: 'absolute',
     flexDirection: 'row',
     justifyContent: 'center',
     maxHeight: 200,
-    top: 780,
+    top: 720,
     // borderStyle: 'solid',
     // borderWidth: 2,
     // borderColor: 'black',

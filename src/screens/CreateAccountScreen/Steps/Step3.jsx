@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, TextInput, Text, TouchableOpacity, Image, Pressable, Platform } from 'react-native';
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -6,33 +6,43 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { styles } from './Step3CSS';
 const smclogo = require('../../../assets/images/smclogo.png');
 
-export const Step3 = ({updateUserObj}) => {
-  
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [occupation, setOccupation] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState('');
-  const [bio, setBio] = useState('');
+export const Step3 = ({
+  validateForm,
+  formData,
+  setFormData,
+  errors,
+  clearError,
+  createUserObj
+}) => {
 
   const isAndroid = Platform.OS === 'android';
 
+  const handleBlur = (inputErrorType) => {
+    validateForm(3);
+    clearError(inputErrorType);
+  }
+
   const storeUserDataAndContinue = () => {
-    const currentUserData = {
-      occupation,
-      dateOfBirth,
-      bio
+    if (validateForm(3)) {
+      // Removes confirm password from user object
+      const { confirmPassword, ...currentUserData } = formData
+      createUserObj(currentUserData);
     }
-    updateUserObj(currentUserData);
   }
 
   const openAndroidDatePicker = () => {
     if (isAndroid) {
-      setShowDatePicker(true);
+      setFormData({ ...formData, showDatePicker: true})
     }
   }
 
   const handleConfirm = (selectedDate) => {
-    setDateOfBirth(selectedDate.toDateString());
-    setShowDatePicker(false);
+    setFormData({
+      ...formData,
+      dateOfBirth: selectedDate.toDateString(),
+      showDatePicker: false,
+    });
+    clearError('dateOfBirth');
   };
 
   return (
@@ -48,37 +58,43 @@ export const Step3 = ({updateUserObj}) => {
       </Text>
       <View style={styles.formContainer}>
         <TextInput
-          placeholder="OCCUPATION"
-          placeholderTextColor="#808080"
-          style={styles.input}
-          value={occupation}
-          onChangeText={text => setOccupation(text)}
+          placeholder={!errors.occupation ? 'OCCUPATION' : errors.occupation}
+          placeholderTextColor={!errors.occupation ? '#808080' : 'red'}
+          style={!errors.occupation ? styles.input : styles.errorInput}
+          value={formData.occupation}
+          onFocus={() => clearError('occupation')}
+          onBlur={() => handleBlur('occupation')}
+          onChangeText={text => setFormData({ ...formData, occupation: text})}
         />
         <Pressable style={styles.pressable} onPress={openAndroidDatePicker}>
           <TextInput
-            placeholder="DATE OF BIRTH"
-            placeholderTextColor="#808080"
-            value={dateOfBirth}
-            style={styles.input}
+            placeholder={!errors.dateOfBirth ? 'DATE OF BIRTH' : errors.dateOfBirth}
+            placeholderTextColor={!errors.dateOfBirth ? '#808080' : 'red'}
+            value={formData.dateOfBirth}
+            onFocus={() => clearError('dateOfBirth')}
+            onBlur={() => handleBlur('dateOfBirth')}
+            style={!errors.dateOfBirth ? styles.input : styles.errorInput}
             editable={false}
-            onPressIn={() => setShowDatePicker(true)}
-            onChangeText={text => setDateOfBirth(text)}
+            onPressIn={() => setFormData({ ...formData, showDatePicker: true})}
+            onChangeText={text => setFormData({ ...formData, dateOfBirth: text})}
           />
         </Pressable>
         <DateTimePickerModal
-          isVisible={showDatePicker}
+          isVisible={formData.showDatePicker}
           mode="date"
           onConfirm={handleConfirm}
-          onCancel={() => setShowDatePicker(false)}
+          onCancel={() => setFormData({ ...formData, showDatePicker: false})}
         />
         <TextInput
           placeholder="BIO"
-          placeholderTextColor="#808080"
+          placeholderTextColor={!errors.bio ? '#808080' : 'red'}
           multiline={true}
           numberOfLines={4}
-          style={isAndroid ? styles.androidTextArea : styles.textArea} 
-          value={bio}
-          onChangeText={text => setBio(text)}
+          style={isAndroid ? styles.androidTextArea : styles.textArea}
+          onFocus={() => clearError('bio')}
+          onBlur={() => handleBlur('bio')}
+          value={formData.bio}
+          onChangeText={text => setFormData({ ...formData, bio: text})}
         />
 
         <TouchableOpacity style={styles.primaryButton} onPress={storeUserDataAndContinue}>

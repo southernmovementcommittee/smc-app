@@ -13,7 +13,6 @@ import mockData from '../../../MOCK_DATA'
 import { ScrollView } from 'react-native-web'
 
 const EventList = ({navigation, route}) => {
-    const router = useRouter()
     const isLoading = false;
     const error = false;
     const data = mockData
