@@ -53,7 +53,7 @@ const CreateAccountScreen = ({ setIsAuth, setUser }) => {
   const isAndroid = Platform.OS === 'android';
 
   /**
-   * After ensure there are no errors in the form, the user object is created from the collected formData. 
+   * After ensuring there are no errors in the form, the user object is created from the collected formData. 
    */
   const createUserObj = () => {
     // Checks if there are any errors
@@ -63,7 +63,13 @@ const CreateAccountScreen = ({ setIsAuth, setUser }) => {
     }
   }
 
-const validateForm = (step) => {
+  /**
+   * 
+   * @param {number} step 
+   * @returns boolean
+   * @description Ensures that all of the inputs are valid and have no errors. If there are errors, then the user will not be able to move onto the next step and will be displayed the error. 
+   */
+  const validateForm = (step) => {
     let valid = true;
     let newErrors = {};
 
@@ -283,6 +289,10 @@ const validateForm = (step) => {
     setCurrentStep(stepNumber);
   };
 
+  /**
+   * @returns React Component (Step of the Create Accounts Flow)
+   * @description Depending on what step of the create accounts flow the user is on, this function will return the corresponding step respectively.
+   */
   const renderStep = () => {
     switch (currentStep) {
       case 1:

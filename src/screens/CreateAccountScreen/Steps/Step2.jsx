@@ -14,20 +14,20 @@ export const Step2 = ({
   clearError,
   goToStep3
 }) => {
+
   /**
    * 
-   * @param {string} clearErrorType
-   * @description Sets the state of inputFocused to be true and the clears the errors for the input errorType that's passed to it.
+   * @param {string} option
+   * @description Updates formData state with the selectedOption and also clears the selectedOption error.
    */
-  const handleFocus = (inputErrorType) => {
-    clearError(inputErrorType);
-  }
-
   const handleSelectOption = (option) => {
     setFormData({ ...formData, selectedOption: option });
     clearError('selectedOption');
   }
 
+  /**
+   * @description After running validation for the inputs currently being displayed, this function sets the selectedOption key to be 'isBlack' instead and navigates to the third step of the flow.
+   */
   const storeUserDataAndContinue = () => {
     if (validateForm(2)) {
       let currentUserData = { ...formData };
@@ -35,16 +35,6 @@ export const Step2 = ({
       currentUserData = { isBlack, ...rest };
       console.log('userData: ', currentUserData);
       goToStep3();
-    }
-  }
-
-  const updatePhonePlaceholder = () => {
-    const phoneError = errors.phoneNum;
-    if (!phoneError) {
-      return 'PHONE NUMBER'
-    }
-    if (phoneError.includes('required')) {
-      return phoneError;
     }
   }
 
@@ -62,7 +52,7 @@ export const Step2 = ({
             style={!errors.firstName ? styles.shortInput2 : styles.shortErrorInput2}
             value={formData.firstName}
             onChangeText={text => setFormData({ ...formData, firstName: text })}
-            onFocus={() => handleFocus('firstName')}
+            onFocus={() => clearError('firstName')}
             onBlur={() => validateForm(2)}
           />
           <TextInput 
@@ -71,7 +61,7 @@ export const Step2 = ({
             style={!errors.lastName ? styles.shortInput2 : styles.shortErrorInput2}
             value={formData.lastName}
             onChangeText={text => setFormData({ ...formData, lastName: text })}
-            onFocus={() => handleFocus('lastName')}
+            onFocus={() => clearError('lastName')}
             onBlur={() => validateForm(2)}
           />
         </View>
@@ -82,7 +72,7 @@ export const Step2 = ({
           value={formData.phoneNum}
           keyboardType='phone-pad'
           onChangeText={text => setFormData({ ...formData, phoneNum: text })}
-          onFocus={() => handleFocus('phoneNum')}
+          onFocus={() => clearError('phoneNum')}
           onBlur={() => validateForm(2)}
         />
         {
@@ -99,7 +89,7 @@ export const Step2 = ({
           style={!errors.address ? styles.input2 : styles.errorInput}
           value={formData.address}
           onChangeText={text => setFormData({ ...formData, address: text })}
-          onFocus={() => handleFocus('address')}
+          onFocus={() => clearError('address')}
           onBlur={() => validateForm(2)}
         />
         <TextInput
@@ -108,7 +98,7 @@ export const Step2 = ({
           style={!errors.address2 ? styles.input2 : styles.errorInput}
           value={formData.address2}
           onChangeText={text => setFormData({ ...formData, address2: text })}
-          onFocus={() => handleFocus('address2')}
+          onFocus={() => clearError('address2')}
           onBlur={() => validateForm(2)}
         />
         <View style={styles.shortInputContainer2}>
@@ -118,7 +108,7 @@ export const Step2 = ({
             style={!errors.city ? styles.shortInput2 : styles.shortErrorInput2}
             value={formData.city}
             onChangeText={text => setFormData({ ...formData, city: text })}
-            onFocus={() => handleFocus('city')}
+            onFocus={() => clearError('city')}
             onBlur={() => validateForm(2)}
           />
           <TextInput
@@ -127,7 +117,7 @@ export const Step2 = ({
             style={!errors.state ? styles.shortInput2 : styles.shortErrorInput2}
             value={formData.state}
             onChangeText={text => setFormData({ ...formData, state: text })}
-            onFocus={() => handleFocus('state')}
+            onFocus={() => clearError('state')}
             onBlur={() => validateForm(2)}
           />
         </View>
@@ -138,7 +128,7 @@ export const Step2 = ({
           value={formData.zipCode}
           keyboardType='number-pad'
           onChangeText={text => setFormData({ ...formData, zipCode: text })}
-          onFocus={() => handleFocus('zipCode')}
+          onFocus={() => clearError('zipCode')}
           onBlur={() => validateForm(2)}
         />
         {

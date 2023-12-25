@@ -15,7 +15,7 @@ export const Step1 = ({
 
   /**
    * @description Checks that inputs are valid and if they are the it stores the current user data (email and password) into the user state object
-   * and then navigates to the next step. 
+   * and then navigates to step 2 of the flow. 
    */
   const storeUserDataAndContinue = () => {
     if (validateForm(1)) {

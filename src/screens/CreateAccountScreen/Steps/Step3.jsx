@@ -17,25 +17,41 @@ export const Step3 = ({
 
   const isAndroid = Platform.OS === 'android';
 
+  /**
+   * 
+   * @param {string} inputErrorType
+   * @description Validates the inputs currently being displayed and then clears the errors for whichever input is currently being interacted with. 
+   */
   const handleBlur = (inputErrorType) => {
     validateForm(3);
     clearError(inputErrorType);
   }
 
+  /**
+   * @description After running validation for the inputs currently being displayed, this function removes the confirm password from the formData object and then passes that updated object to the createUserObj function.
+   */
   const storeUserDataAndContinue = () => {
     if (validateForm(3)) {
-      // Removes confirm password from user object
+      // Removes confirm password from formData object
       const { confirmPassword, ...currentUserData } = formData
       createUserObj(currentUserData);
     }
   }
 
+  /**
+   * @description Sets the showDatePicker property to be true in the formData object.
+   */
   const openAndroidDatePicker = () => {
     if (isAndroid) {
       setFormData({ ...formData, showDatePicker: true})
     }
   }
 
+  /**
+   * 
+   * @param {Date} selectedDate
+   * @description Takes in a date object as an arguement and then sets to the dateOfBirth property as a string value in the formData object. It then clears the error state for any dateOfBirth errors. 
+   */
   const handleConfirm = (selectedDate) => {
     setFormData({
       ...formData,
