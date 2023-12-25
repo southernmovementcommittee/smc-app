@@ -4,13 +4,13 @@ import {
     Text,
     TouchableOpacity,
     FlatList,
-    ActivityIndicator
+    ActivityIndicator,
+    ScrollView
 } from 'react-native'
 
 import EventCard from '../EventCard/EventCard'
 
 import mockData from '../../../MOCK_DATA'
-import { ScrollView } from 'react-native-web'
 
 const EventList = ({navigation, route}) => {
     const isLoading = false;
