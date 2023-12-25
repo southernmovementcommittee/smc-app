@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-import { View, TouchableOpacity, Animated, Platform } from 'react-native';
+import { View, Animated, Platform, Keyboard, TouchableWithoutFeedback } from 'react-native';
 
 import { Step1 } from './Steps/Step1';
 import { Step2 } from './Steps/Step2';
@@ -9,10 +9,20 @@ import { PaginationDot } from '../../components/PaginationDot';
 
 import { styles } from './Steps/Step1CSS';
 
-const CreateAccountScreen = ({ setIsAuth }) => {
+const CreateAccountScreen = ({ setIsAuth, setUser }) => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [userData, setUserData] = useState({});
   const animatedValues = useRef([1, 2, 3].map(() => new Animated.Value(1))).current;
   const isAndroid = Platform.OS === 'android';
+
+  const updateUserObj = (newData) => {
+    setUserData(prev => Object.assign(prev, newData));
+    // checks the user property length before authenticating
+    if (Object.entries(userData).length === 14) {
+      setUser(userData);
+      setIsAuth(true);
+    }
+  }
 
   useEffect(() => {
     Animated.timing(animatedValues[currentStep - 1], {
@@ -29,7 +39,8 @@ const CreateAccountScreen = ({ setIsAuth }) => {
         useNativeDriver: true,
       }).start();
     }
-  }, [currentStep]);
+    console.log('userData: ', userData);
+  }, [currentStep, userData]);
 
   const goToStep = (stepNumber) => {
     setCurrentStep(stepNumber);
@@ -38,26 +49,26 @@ const CreateAccountScreen = ({ setIsAuth }) => {
   const renderStep = () => {
     switch (currentStep) {
       case 1:
-        return <Step1 goToStep2={() => goToStep(2)} />;
+        return <Step1 goToStep2={() => goToStep(2)} updateUserObj={updateUserObj} />;
       case 2:
-        return <Step2 goToStep3={() => goToStep(3)} />;
+        return <Step2 goToStep3={() => goToStep(3)} updateUserObj={updateUserObj} />;
       case 3:
-        return <Step3 setIsAuth={setIsAuth} />;
+        return <Step3 setIsAuth={setIsAuth} updateUserObj={updateUserObj} />;
       default:
         return null;
     }
   };
   return (
-    <View style={styles.container}>
-      {renderStep()}
-      <View style={isAndroid ? styles.androidPaginationContainer : styles.paginationContainer}>
-        {[1, 2, 3].map((step, index) => (
-          <TouchableOpacity key={step} onPress={() => goToStep(step)}>
-            <PaginationDot animatedValues={animatedValues} index={index} selected={step === currentStep}/>
-          </TouchableOpacity>
-        ))}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={styles.container}>
+        {renderStep()}
+        <View style={isAndroid ? styles.androidPaginationContainer : styles.paginationContainer}>
+          {[1, 2, 3].map((step, index) => (
+            <PaginationDot key={step} animatedValues={animatedValues} index={index} selected={step === currentStep}/>
+          ))}
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
