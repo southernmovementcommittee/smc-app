@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View,
     Text,
     Image,
     SafeAreaView,
     ScrollView,
+    Button,
     ActivityIndicator,
     TouchableOpacity,
     RefreshControl,
 } from "react-native";
 
 import styles from './EventsDetailScreenCss'
+import Modal from "react-native-modal"
 
 
 const EventDetailsScreen = ({route, navigation }) => {
@@ -23,6 +25,10 @@ const EventDetailsScreen = ({route, navigation }) => {
         eventLocation,
         eventDescription,
     } = route.params;
+
+    const [isModalVisible, setIsModalVisible] = useState(false)
+
+    const handleModal = () => setIsModalVisible(() => !isModalVisible);
 
     return (
             <ScrollView style={styles.container}>
@@ -56,11 +62,17 @@ const EventDetailsScreen = ({route, navigation }) => {
                         </View>
                         
                         <View>
-                            <TouchableOpacity>
-                                <Text>RSVP</Text>
-                            </TouchableOpacity>
+                            <TouchableOpacity title="RSVP" style={{backgroundColor: 'black', width: 2, height: 2}} onPress={handleModal}/>
                         </View>
                     </View>
+
+                    <Modal isVisible={isModalVisible}>
+                        <View style={{ fex: 1 }}>
+                            <Button title="Hide modal" onPress={handleModal}>Exit</Button>
+                            <Text>Success</Text>
+                            <Text>You have a successfully rsvp’d to our event. You should be receiving an email with your confirmation number and QRF code. Thank you for attending our event and have a bless day!</Text>
+                        </View>
+                    </Modal>
 
                 </View>
             </ScrollView>
