@@ -4,22 +4,22 @@ import {
     Text,
     TouchableOpacity,
     FlatList,
-    ActivityIndicator
+    ActivityIndicator,
+    ScrollView
 } from 'react-native'
 
 import EventCard from '../EventCard/EventCard'
 
 import mockData from '../../../MOCK_DATA'
-import { ScrollView } from 'react-native-web'
 
 const EventList = ({navigation, route}) => {
     const isLoading = false;
     const error = false;
-    const data = mockData
+    const events = mockData
 
     const [selectedEvent, setSelectedEvent] = useState()
 
-    console.log(data)
+    console.log(events)
 
     return (
         <ScrollView>
@@ -30,14 +30,31 @@ const EventList = ({navigation, route}) => {
                     ) : error ? (
                         <Text>Something went wrong</Text>
                     ) : (
-                        data?.map((event) => (
+                        <FlatList
+                        data={events}    
+                        renderItem={({item}) => (
+                            <TouchableOpacity onPress={() => {
+                                console.log(item.id, item.image)
+                              navigation.navigate('EventsDetailsScreen', 
+                                {
+                                eventId: item.id, 
+                                eventImage: item.image,
+                                eventDate: item.date_time,
+                                eventTime: item.time,
+                                eventLocation: item.event_location,
+                                eventTitle: item.event_title,
+                                eventDescription: item.event_description,
+                                })
+                            }}
+                            >
                             <EventCard
-                                event={event}
-                                key={`upcoming-event-${event?.id}`}
+                                event={item}
                                 navigation={navigation}
-                                route={route}
                             />
-                        ))
+                        </TouchableOpacity>
+                        )} 
+                        keyExtractor={item => item.id.toString()}
+                      />  
                             
                     )}
                 </View>
