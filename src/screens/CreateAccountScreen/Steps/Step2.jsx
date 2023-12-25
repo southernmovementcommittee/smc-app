@@ -38,6 +38,16 @@ export const Step2 = ({
     }
   }
 
+  const updatePhonePlaceholder = () => {
+    const phoneError = errors.phoneNum;
+    if (!phoneError) {
+      return 'PHONE NUMBER'
+    }
+    if (phoneError.includes('required')) {
+      return phoneError;
+    }
+  }
+
   return (
     <>
       <View style={styles.imageContainer2}>
@@ -66,7 +76,7 @@ export const Step2 = ({
           />
         </View>
         <TextInput 
-          placeholder={!errors.phoneNum ? 'PHONE NUMBER' : errors.phoneNum.includes('requires') || 'PHONE NUMBER'}
+          placeholder={!errors.phoneNum ? 'PHONE NUMBER' : errors.phoneNum}
           placeholderTextColor={!errors.phoneNum ? "#808080" : 'red'}
           style={!errors.phoneNum ? styles.input2 : styles.errorInput}
           value={formData.phoneNum}
@@ -84,7 +94,7 @@ export const Step2 = ({
           </View>
         }
         <TextInput 
-          placeholder="STREET ADDRESS"
+          placeholder={!errors.address ? 'STREET ADDRESS' : errors.address}
           placeholderTextColor={!errors.address ? "#808080" : 'red'}
           style={!errors.address ? styles.input2 : styles.errorInput}
           value={formData.address}
@@ -103,7 +113,7 @@ export const Step2 = ({
         />
         <View style={styles.shortInputContainer2}>
           <TextInput
-            placeholder="CITY"
+            placeholder={!errors.city ? 'CITY' : errors.city}
             placeholderTextColor={!errors.city ? "#808080" : 'red'}
             style={!errors.city ? styles.shortInput2 : styles.shortErrorInput2}
             value={formData.city}
@@ -112,7 +122,7 @@ export const Step2 = ({
             onBlur={() => validateForm(2)}
           />
           <TextInput
-            placeholder="STATE"
+            placeholder={!errors.state ? 'STATE' : errors.state}
             placeholderTextColor={!errors.state ? "#808080" : 'red'}
             style={!errors.state ? styles.shortInput2 : styles.shortErrorInput2}
             value={formData.state}
@@ -122,7 +132,7 @@ export const Step2 = ({
           />
         </View>
         <TextInput
-          placeholder="ZIP CODE"
+          placeholder={!errors.zipCode ? 'ZIP CODE' : errors.zipCode}
           placeholderTextColor={!errors.zipCode ? "#808080" : 'red'}
           style={!errors.zipCode ? styles.shortInput2 : styles.shortErrorInput2}
           value={formData.zipCode}
@@ -131,6 +141,14 @@ export const Step2 = ({
           onFocus={() => handleFocus('zipCode')}
           onBlur={() => validateForm(2)}
         />
+        {
+          errors.zipCode === 'invalid' &&
+          <View style={styles.errorTextContainer}>
+            <Text style={styles.errorText} numberOfLines={2} ellipsizeMode='middle'>
+              Zip entered is invalid
+            </Text>
+          </View>
+        }
         <View style={styles.textContainer2}>
           <Text style={styles.text2} >ARE YOU BLACK?</Text>
         </View>

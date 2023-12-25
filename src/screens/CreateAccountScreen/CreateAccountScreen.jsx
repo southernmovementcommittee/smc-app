@@ -142,7 +142,7 @@ const validateForm = (step) => {
 
     // Zip Code
     if (!formData.zipCode) {
-      newErrors.zipCode = 'Zip code is required';
+      newErrors.zipCode = 'Zip is required';
       valid = false;
     } else {
       const zipCodeRegex = /^\d{5}(-\d{4})?$/;
