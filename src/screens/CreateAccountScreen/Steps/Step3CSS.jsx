@@ -33,6 +33,27 @@ export const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: '#f5fcff',
   },
+  errorInput: {
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'red',
+    borderRadius: 25,
+    color: 'red',
+    padding: 15,
+    backgroundColor: 'pink',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+    fontSize: 12,
+    alignSelf: 'stretch',
+  },
+  errorTextContainer: {
+    maxWidth: 300,
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 14,
+    marginHorizontal: 15,
+  },
   textArea: {
     alignSelf: 'stretch',
     textAlign: 'auto',

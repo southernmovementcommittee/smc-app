@@ -25,7 +25,34 @@ export const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: '#f5fcff',
     minHeight: 50,
-    minWidth: 140,
+    maxHeight: 50,
+    minWidth: 130,
+  },
+  errorInput: {
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'red',
+    borderRadius: 25,
+    color: 'red',
+    padding: 15,
+    backgroundColor: 'pink',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+    fontSize: 12,
+    alignSelf: 'stretch',
+  },
+  shortErrorInput2: {
+    borderWidth: 1,
+    borderColor: 'red',
+    color: 'red',
+    fontWeight: 'bold',
+    fontSize: 12,
+    borderRadius: 25,
+    padding: 15,
+    backgroundColor: 'pink',
+    minHeight: 50,
+    maxHeight: 50,
+    minWidth: 130,
   },
   shortInputContainer2: {
     flex: 1,
@@ -41,11 +68,11 @@ export const styles = StyleSheet.create({
   },
   formContainer2: {
     flex: 1,
-    justifyContent: 'flex-start',
+    // justifyContent: 'flex-start',
     flexDirection: 'column',
     alignItems: 'flex-start',
     minWidth: 300,
-    maxHeight: 620,
+    // maxHeight: 620,
     // borderStyle: 'solid',
     // borderWidth: 2,
     // borderColor: 'black',
@@ -57,7 +84,7 @@ export const styles = StyleSheet.create({
   textContainer2: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginVertical: 20,
+    marginVertical: 10,
     alignSelf: 'stretch'
   },
   header2: {
@@ -96,6 +123,7 @@ export const styles = StyleSheet.create({
     // borderStyle: 'solid',
     // borderWidth: 2,
     // borderColor: 'black',
+    // marginTop: 40
   },  
   image2: {
     width: 100,
@@ -109,15 +137,37 @@ export const styles = StyleSheet.create({
     width:25,
   },
   checkboxContainer2: {
-    marginHorizontal: 20
+    marginHorizontal: 20,
   },
   checkboxesContainer2: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignSelf: 'stretch',
-    marginBottom: 30,
+    marginBottom: 10,
     // borderStyle: 'solid',
     // borderWidth: 2,
     // borderColor: 'black',
-  }
+  },
+  checkboxesAndErrorContainer: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    marginBottom: 20,
+    // borderStyle: 'solid',
+    // borderWidth: 2,
+    // borderColor: 'black',
+  },
+  firstNameContainer: {
+    maxWidth: 130,
+  },
+  lastNameContainer: {
+    maxWidth: 130,
+  },
+  errorTextContainer: {
+    maxWidth: 300,
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 14,
+    marginHorizontal: 15,
+  },
 });

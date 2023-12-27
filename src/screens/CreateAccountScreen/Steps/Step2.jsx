@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, TextInput, Text, TouchableOpacity, Image } from 'react-native';
 import CheckBox from 'expo-checkbox';
 
@@ -6,35 +6,36 @@ import { styles } from './Step2CSS';
 
 const smclogo = require('../../../assets/images/smclogo.png');
 
-export const Step2 = ({ goToStep3, updateUserObj }) => {
-  const [selectedOption, setSelectedOption] = useState(false);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [phoneNum, setPhoneNum] = useState('');
-  const [address1, setAddress1] = useState('');
-  const [address2, setAddress2] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [zipCode, setZipCode] = useState('');
+export const Step2 = ({
+  validateForm,
+  formData,
+  setFormData,
+  errors,
+  clearError,
+  goToStep3
+}) => {
 
+  /**
+   * 
+   * @param {string} option
+   * @description Updates formData state with the selectedOption and also clears the selectedOption error.
+   */
   const handleSelectOption = (option) => {
-    setSelectedOption(option);
+    setFormData({ ...formData, selectedOption: option });
+    clearError('selectedOption');
   }
 
+  /**
+   * @description After running validation for the inputs currently being displayed, this function sets the selectedOption key to be 'isBlack' instead and navigates to the third step of the flow.
+   */
   const storeUserDataAndContinue = () => {
-    const currentUserData = {
-      firstName,
-      lastName,
-      phoneNum,
-      address1,
-      address2,
-      city,
-      state,
-      zipCode,
-      'isBlack': selectedOption
+    if (validateForm(2)) {
+      let currentUserData = { ...formData };
+      const { selectedOption: isBlack, ...rest } = currentUserData;
+      currentUserData = { isBlack, ...rest };
+      console.log('userData: ', currentUserData);
+      goToStep3();
     }
-    updateUserObj(currentUserData);
-    goToStep3();
   }
 
   return (
@@ -42,95 +43,135 @@ export const Step2 = ({ goToStep3, updateUserObj }) => {
       <View style={styles.imageContainer2}>
         <Image style={styles.image2} source={smclogo} />
       </View>
-      <Text style={styles.header2} >CREATE NEW ACCOUNT</Text>
+      <Text style={styles.header2}>CREATE NEW ACCOUNT</Text>
       <View style={styles.formContainer2}>
         <View style={styles.shortInputContainer2}>
           <TextInput 
-            placeholder="FIRST NAME"
-            placeholderTextColor="#808080"
-            style={styles.shortInput2}
-            value={firstName}
-            onChangeText={text => setFirstName(text)}
+            placeholder={!errors.firstName ? "FIRST NAME" : errors.firstName}
+            placeholderTextColor={!errors.firstName ? "#808080" : 'red'}
+            style={!errors.firstName ? styles.shortInput2 : styles.shortErrorInput2}
+            value={formData.firstName}
+            onChangeText={text => setFormData({ ...formData, firstName: text })}
+            onFocus={() => clearError('firstName')}
+            onBlur={() => validateForm(2)}
           />
           <TextInput 
-            placeholder="LAST NAME"
-            placeholderTextColor="#808080"
-            style={styles.shortInput2}
-            value={lastName}
-            onChangeText={text => setLastName(text)}
+            placeholder={!errors.lastName ? "LAST NAME" : errors.lastName}
+            placeholderTextColor={!errors.lastName ? "#808080" : 'red'}
+            style={!errors.lastName ? styles.shortInput2 : styles.shortErrorInput2}
+            value={formData.lastName}
+            onChangeText={text => setFormData({ ...formData, lastName: text })}
+            onFocus={() => clearError('lastName')}
+            onBlur={() => validateForm(2)}
           />
         </View>
         <TextInput 
-          placeholder="PHONE NUMBER"
-          placeholderTextColor="#808080"
-          style={styles.input2}
-          value={phoneNum}
+          placeholder={!errors.phoneNum ? 'PHONE NUMBER' : errors.phoneNum}
+          placeholderTextColor={!errors.phoneNum ? "#808080" : 'red'}
+          style={!errors.phoneNum ? styles.input2 : styles.errorInput}
+          value={formData.phoneNum}
           keyboardType='phone-pad'
-          onChangeText={text => setPhoneNum(text)}
+          onChangeText={text => setFormData({ ...formData, phoneNum: text })}
+          onFocus={() => clearError('phoneNum')}
+          onBlur={() => validateForm(2)}
         />
+        {
+          errors.phoneNum === 'invalid' &&
+          <View style={styles.errorTextContainer}>
+            <Text style={styles.errorText} numberOfLines={2} ellipsizeMode='middle'>
+              Phone number is invalid
+            </Text>
+          </View>
+        }
         <TextInput 
-          placeholder="STREET ADDRESS"
-          placeholderTextColor="#808080"
-          style={styles.input2}
-          value={address1}
-          onChangeText={text => setAddress1(text)}
+          placeholder={!errors.address ? 'STREET ADDRESS' : errors.address}
+          placeholderTextColor={!errors.address ? "#808080" : 'red'}
+          style={!errors.address ? styles.input2 : styles.errorInput}
+          value={formData.address}
+          onChangeText={text => setFormData({ ...formData, address: text })}
+          onFocus={() => clearError('address')}
+          onBlur={() => validateForm(2)}
         />
         <TextInput
           placeholder="STREET ADDRESS 2"
-          placeholderTextColor="#808080"
-          style={styles.input2}
-          value={address2}
-          onChangeText={text => setAddress2(text)}
+          placeholderTextColor={!errors.address2 ? "#808080" : 'red'}
+          style={!errors.address2 ? styles.input2 : styles.errorInput}
+          value={formData.address2}
+          onChangeText={text => setFormData({ ...formData, address2: text })}
+          onFocus={() => clearError('address2')}
+          onBlur={() => validateForm(2)}
         />
         <View style={styles.shortInputContainer2}>
           <TextInput
-            placeholder="CITY"
-            placeholderTextColor="#808080"
-            style={styles.shortInput2}
-            value={city}
-            onChangeText={text => setCity(text)}
+            placeholder={!errors.city ? 'CITY' : errors.city}
+            placeholderTextColor={!errors.city ? "#808080" : 'red'}
+            style={!errors.city ? styles.shortInput2 : styles.shortErrorInput2}
+            value={formData.city}
+            onChangeText={text => setFormData({ ...formData, city: text })}
+            onFocus={() => clearError('city')}
+            onBlur={() => validateForm(2)}
           />
           <TextInput
-            placeholder="STATE"
-            placeholderTextColor="#808080"
-            style={styles.shortInput2}
-            value={state}
-            onChangeText={text => setState(text)}
+            placeholder={!errors.state ? 'STATE' : errors.state}
+            placeholderTextColor={!errors.state ? "#808080" : 'red'}
+            style={!errors.state ? styles.shortInput2 : styles.shortErrorInput2}
+            value={formData.state}
+            onChangeText={text => setFormData({ ...formData, state: text })}
+            onFocus={() => clearError('state')}
+            onBlur={() => validateForm(2)}
           />
         </View>
         <TextInput
-          placeholder="POSTAL/ZIP CODE"
-          placeholderTextColor="#808080"
-          style={styles.shortInput2}
-          value={zipCode}
+          placeholder={!errors.zipCode ? 'ZIP CODE' : errors.zipCode}
+          placeholderTextColor={!errors.zipCode ? "#808080" : 'red'}
+          style={!errors.zipCode ? styles.shortInput2 : styles.shortErrorInput2}
+          value={formData.zipCode}
           keyboardType='number-pad'
-          onChangeText={text => setZipCode(text)}
+          onChangeText={text => setFormData({ ...formData, zipCode: text })}
+          onFocus={() => clearError('zipCode')}
+          onBlur={() => validateForm(2)}
         />
+        {
+          errors.zipCode === 'invalid' &&
+          <View style={styles.errorTextContainer}>
+            <Text style={styles.errorText} numberOfLines={2} ellipsizeMode='middle'>
+              Zip entered is invalid
+            </Text>
+          </View>
+        }
         <View style={styles.textContainer2}>
           <Text style={styles.text2} >ARE YOU BLACK?</Text>
         </View>
-        <View style={styles.checkboxesContainer2}>
-          <View style={styles.checkboxContainer2}>
-            <Text style={styles.label}>Yes</Text>
-            <CheckBox
-              value={selectedOption === 'yes'}
-              onValueChange={() => handleSelectOption('yes')}
-              color={selectedOption === 'yes' ? '#FFD600' : ''}
-              style={styles.checkbox2}
-              />
+        <View style={styles.checkboxesAndErrorContainer}>
+            <View style={styles.checkboxesContainer2}>
+              <View style={styles.checkboxContainer2}>
+                <Text style={styles.label}>Yes</Text>
+                <CheckBox
+                  value={formData.selectedOption === 'yes'}
+                  onValueChange={() => handleSelectOption('yes')}
+                  color={formData.selectedOption === 'yes' ? '#FFD600' : ''}
+                  style={styles.checkbox2}
+                />
+              </View>
+              <View style={styles.checkboxContainer2}>
+                <Text style={styles.label2}>No</Text>
+                <CheckBox
+                  value={formData.selectedOption === 'no'}
+                  onValueChange={() => handleSelectOption('no')}
+                  color={formData.selectedOption === 'no' ? '#FFD600' : ''}
+                  style={styles.checkbox2}
+                />
+              </View>
+            </View>
+            {
+            errors.selectedOption &&
+            <View>
+              <Text style={styles.errorText}>{ errors.selectedOption }</Text>
+            </View>
+            }
           </View>
-          <View style={styles.checkboxContainer2}>
-            <Text style={styles.label2}>No</Text>
-            <CheckBox
-              value={selectedOption === 'no'}
-              onValueChange={() => handleSelectOption('no')}
-              color={selectedOption === 'no' ? '#FFD600' : ''}
-              style={styles.checkbox2}
-            />
-          </View>
-        </View>
         <TouchableOpacity style={styles.primaryButton2} onPress={storeUserDataAndContinue}>
-          <Text style={styles.primaryButtonText2} >Continue to Step 3</Text>
+          <Text style={styles.primaryButtonText2}>Continue to Step 3</Text>
         </TouchableOpacity>
       </View>
     </>

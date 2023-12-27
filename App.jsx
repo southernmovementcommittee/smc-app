@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { AuthStackNavigator } from './src/routes/AuthStackNavigator';
 import React, { useState } from 'react';
@@ -14,6 +14,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
+      <SafeAreaView style={styles.safeContainer}>
         {
         isAuth ? (
             <Navbar setIsAuth={setIsAuth} user={user} />
@@ -21,15 +22,15 @@ export default function App() {
             <AuthStackNavigator setIsAuth={setIsAuth} setUser={setUser} />
           )
         }
+      </SafeAreaView>
     </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  safeContainer: {
     flex: 1,
     backgroundColor: '#FFD600',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // backgroundColor: '#000',
   },
 });
