@@ -62,13 +62,13 @@ const EventDetailsScreen = ({route, navigation }) => {
                         </View>
                         
                         <View>
-                            <TouchableOpacity title="RSVP" style={{backgroundColor: 'black', width: 2, height: 2}} onPress={handleModal}/>
+                            <Button title="RSVP" onPress={handleModal}/>
                         </View>
                     </View>
 
                     <Modal isVisible={isModalVisible}>
                         <View style={{ fex: 1 }}>
-                            <Button title="Hide modal" onPress={handleModal}>Exit</Button>
+                            <Button title="Exit" onPress={handleModal}/>
                             <Text>Success</Text>
                             <Text>You have a successfully rsvp’d to our event. You should be receiving an email with your confirmation number and QRF code. Thank you for attending our event and have a bless day!</Text>
                         </View>
