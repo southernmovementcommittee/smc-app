@@ -31,9 +31,6 @@ export const Step1 = ({
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={smclogo} />
       </View>
-      {/* <View style={!inputFocused ? styles.imageContainer : styles.inputFocusedImageContainer}>
-        <Image style={!inputFocused ? styles.image : styles.inputFocusedImage} source={smclogo} />
-      </View> */}
       <Text style={styles.header} >CREATE NEW ACCOUNT</Text>
       <View style={styles.formContainer}>
         <TextInput
@@ -41,7 +38,6 @@ export const Step1 = ({
           placeholderTextColor={!errors.email ? "#808080" : 'red'}
           value={formData.email}
           onChangeText={text => setFormData({...formData, email: text})}
-          onBlur={() => validateForm(1)}
           onFocus={() => clearError('email')}
           style={!errors.email ? styles.input : styles.errorInput}
         />
@@ -59,7 +55,6 @@ export const Step1 = ({
           value={formData.password}
           onChangeText={text => setFormData({ ...formData, password: text })}
           onPressIn={()=> setFormData({ ...formData, password: '', confirmPassword: '' })}
-          onBlur={() => validateForm(1)}
           onFocus={() => clearError('password')}
           style={!errors.password ? styles.input : styles.errorInput}
         />
@@ -78,7 +73,6 @@ export const Step1 = ({
           value={formData.confirmPassword}
           onChangeText={text => setFormData({ ...formData, confirmPassword: text })}
           onPressIn={()=> setFormData({ ...formData, confirmPassword: '' })}
-          onBlur={() => validateForm(1)}
           onFocus={() => clearError('confirmPassword')}
           style={!errors.password ? styles.input : styles.errorInput}
         />

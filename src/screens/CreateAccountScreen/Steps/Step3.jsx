@@ -23,7 +23,6 @@ export const Step3 = ({
    * @description Validates the inputs currently being displayed and then clears the errors for whichever input is currently being interacted with. 
    */
   const handleBlur = (inputErrorType) => {
-    validateForm(3);
     setBioIsFocused(false);
     clearError(inputErrorType);
   }
