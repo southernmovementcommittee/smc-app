@@ -7,6 +7,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f5fcff',
+    overflow: 'scroll',
+    height: 'auto',
   },
   input: {
     marginVertical: 10,

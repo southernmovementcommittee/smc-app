@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, Text, TouchableOpacity, Image } from 'react-native';
 import CheckBox from 'expo-checkbox';
 
@@ -14,7 +14,7 @@ export const Step2 = ({
   clearError,
   goToStep3
 }) => {
-
+  const [cityStateZipFocus, setCityStateZipFocus] = useState(false);
   /**
    * 
    * @param {string} option
@@ -33,9 +33,18 @@ export const Step2 = ({
       let currentUserData = { ...formData };
       const { selectedOption: isBlack, ...rest } = currentUserData;
       currentUserData = { isBlack, ...rest };
-      console.log('userData: ', currentUserData);
       goToStep3();
     }
+  }
+
+  const handleCityStateZipFocus = (inputErrorType) => {
+    setCityStateZipFocus(true);
+    clearError(inputErrorType);
+  }
+
+  const handleBlur = (inputErrorType) => {
+    setCityStateZipFocus(false);
+    clearError(inputErrorType)
   }
 
   return (
@@ -45,6 +54,7 @@ export const Step2 = ({
       </View>
       <Text style={styles.header2}>CREATE NEW ACCOUNT</Text>
       <View style={styles.formContainer2}>
+        <View style={!cityStateZipFocus ? styles.emptyContainer : styles.inputHidden}>
         <View style={styles.shortInputContainer2}>
           <TextInput 
             placeholder={!errors.firstName ? "FIRST NAME" : errors.firstName}
@@ -53,7 +63,7 @@ export const Step2 = ({
             value={formData.firstName}
             onChangeText={text => setFormData({ ...formData, firstName: text })}
             onFocus={() => clearError('firstName')}
-            onBlur={() => validateForm(2)}
+            onBlur={() => handleBlur('firstName')}
           />
           <TextInput 
             placeholder={!errors.lastName ? "LAST NAME" : errors.lastName}
@@ -62,7 +72,7 @@ export const Step2 = ({
             value={formData.lastName}
             onChangeText={text => setFormData({ ...formData, lastName: text })}
             onFocus={() => clearError('lastName')}
-            onBlur={() => validateForm(2)}
+            onBlur={() => handleBlur('lastName')}
           />
         </View>
         <TextInput 
@@ -73,7 +83,7 @@ export const Step2 = ({
           keyboardType='phone-pad'
           onChangeText={text => setFormData({ ...formData, phoneNum: text })}
           onFocus={() => clearError('phoneNum')}
-          onBlur={() => validateForm(2)}
+          onBlur={() => handleBlur('phoneNum')}
         />
         {
           errors.phoneNum === 'invalid' &&
@@ -90,7 +100,7 @@ export const Step2 = ({
           value={formData.address}
           onChangeText={text => setFormData({ ...formData, address: text })}
           onFocus={() => clearError('address')}
-          onBlur={() => validateForm(2)}
+          onBlur={() => handleBlur('address')}
         />
         <TextInput
           placeholder="STREET ADDRESS 2"
@@ -99,8 +109,9 @@ export const Step2 = ({
           value={formData.address2}
           onChangeText={text => setFormData({ ...formData, address2: text })}
           onFocus={() => clearError('address2')}
-          onBlur={() => validateForm(2)}
-        />
+          onBlur={() => handleBlur('address2')}
+          />
+        </View>
         <View style={styles.shortInputContainer2}>
           <TextInput
             placeholder={!errors.city ? 'CITY' : errors.city}
@@ -108,8 +119,8 @@ export const Step2 = ({
             style={!errors.city ? styles.shortInput2 : styles.shortErrorInput2}
             value={formData.city}
             onChangeText={text => setFormData({ ...formData, city: text })}
-            onFocus={() => clearError('city')}
-            onBlur={() => validateForm(2)}
+            onFocus={() => handleCityStateZipFocus('city')}
+            onBlur={() => handleBlur('city')}
           />
           <TextInput
             placeholder={!errors.state ? 'STATE' : errors.state}
@@ -117,8 +128,8 @@ export const Step2 = ({
             style={!errors.state ? styles.shortInput2 : styles.shortErrorInput2}
             value={formData.state}
             onChangeText={text => setFormData({ ...formData, state: text })}
-            onFocus={() => clearError('state')}
-            onBlur={() => validateForm(2)}
+            onFocus={() => handleCityStateZipFocus('state')}
+            onBlur={() => handleBlur('state')}
           />
         </View>
         <TextInput
@@ -128,8 +139,8 @@ export const Step2 = ({
           value={formData.zipCode}
           keyboardType='number-pad'
           onChangeText={text => setFormData({ ...formData, zipCode: text })}
-          onFocus={() => clearError('zipCode')}
-          onBlur={() => validateForm(2)}
+          onFocus={() => handleCityStateZipFocus('zipCode')}
+          onBlur={() => handleBlur('zipCode')}
         />
         {
           errors.zipCode === 'invalid' &&

@@ -9,6 +9,9 @@ export const styles = StyleSheet.create({
     backgroundColor: '#f5fcff',
     paddingHorizontal: 20,
   },
+  scollContainer: {
+    overflow: 'scroll',
+  },
   formContainer: {
     flex: 1,
     justifyContent: 'flex-start',
@@ -33,8 +36,11 @@ export const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: '#f5fcff',
   },
+  inputHidden: {
+    display: 'none',
+  },
   errorInput: {
-    marginBottom: 10,
+    margin: 10,
     borderWidth: 1,
     borderColor: 'red',
     borderRadius: 25,
