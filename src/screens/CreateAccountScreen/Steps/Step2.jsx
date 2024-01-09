@@ -10,6 +10,7 @@ export const Step2 = ({
   validateForm,
   formData,
   setFormData,
+  setErrors,
   errors,
   clearError,
   goToStep3
@@ -22,7 +23,7 @@ export const Step2 = ({
    */
   const handleSelectOption = (option) => {
     setFormData({ ...formData, selectedOption: option });
-    clearError('selectedOption');
+    clearError('selectedOption', errors, setErrors);
   }
 
   /**
@@ -52,8 +53,7 @@ export const Step2 = ({
             style={!errors.firstName ? styles.shortInput2 : styles.shortErrorInput2}
             value={formData.firstName}
             onChangeText={text => setFormData({ ...formData, firstName: text })}
-            onFocus={() => clearError('firstName')}
-            onBlur={() => validateForm(2)}
+            onFocus={() => clearError('firstName', errors, setErrors)}
           />
           <TextInput 
             placeholder={!errors.lastName ? "LAST NAME" : errors.lastName}
@@ -61,8 +61,7 @@ export const Step2 = ({
             style={!errors.lastName ? styles.shortInput2 : styles.shortErrorInput2}
             value={formData.lastName}
             onChangeText={text => setFormData({ ...formData, lastName: text })}
-            onFocus={() => clearError('lastName')}
-            onBlur={() => validateForm(2)}
+            onFocus={() => clearError('lastName', errors, setErrors)}
           />
         </View>
         <TextInput 
@@ -72,8 +71,7 @@ export const Step2 = ({
           value={formData.phoneNum}
           keyboardType='phone-pad'
           onChangeText={text => setFormData({ ...formData, phoneNum: text })}
-          onFocus={() => clearError('phoneNum')}
-          onBlur={() => validateForm(2)}
+          onFocus={() => clearError('phoneNum', errors, setErrors)}
         />
         {
           errors.phoneNum === 'invalid' &&
@@ -89,8 +87,7 @@ export const Step2 = ({
           style={!errors.address ? styles.input2 : styles.errorInput}
           value={formData.address}
           onChangeText={text => setFormData({ ...formData, address: text })}
-          onFocus={() => clearError('address')}
-          onBlur={() => validateForm(2)}
+          onFocus={() => clearError('address', errors, setErrors)}
         />
         <TextInput
           placeholder="STREET ADDRESS 2"
@@ -98,8 +95,7 @@ export const Step2 = ({
           style={!errors.address2 ? styles.input2 : styles.errorInput}
           value={formData.address2}
           onChangeText={text => setFormData({ ...formData, address2: text })}
-          onFocus={() => clearError('address2')}
-          onBlur={() => validateForm(2)}
+          onFocus={() => clearError('address2', errors, setErrors)}
         />
         <View style={styles.shortInputContainer2}>
           <TextInput
@@ -108,8 +104,7 @@ export const Step2 = ({
             style={!errors.city ? styles.shortInput2 : styles.shortErrorInput2}
             value={formData.city}
             onChangeText={text => setFormData({ ...formData, city: text })}
-            onFocus={() => clearError('city')}
-            onBlur={() => validateForm(2)}
+            onFocus={() => clearError('city', errors, setErrors)}
           />
           <TextInput
             placeholder={!errors.state ? 'STATE' : errors.state}
@@ -117,8 +112,7 @@ export const Step2 = ({
             style={!errors.state ? styles.shortInput2 : styles.shortErrorInput2}
             value={formData.state}
             onChangeText={text => setFormData({ ...formData, state: text })}
-            onFocus={() => clearError('state')}
-            onBlur={() => validateForm(2)}
+            onFocus={() => clearError('state', errors, setErrors)}
           />
         </View>
         <TextInput
@@ -128,8 +122,7 @@ export const Step2 = ({
           value={formData.zipCode}
           keyboardType='number-pad'
           onChangeText={text => setFormData({ ...formData, zipCode: text })}
-          onFocus={() => clearError('zipCode')}
-          onBlur={() => validateForm(2)}
+          onFocus={() => clearError('zipCode', errors, setErrors)}
         />
         {
           errors.zipCode === 'invalid' &&

@@ -9,6 +9,7 @@ export const Step1 = ({
   formData,
   setFormData,
   errors,
+  setErrors,
   clearError,
   goToStep2,
 }) => {
@@ -38,8 +39,7 @@ export const Step1 = ({
           placeholderTextColor={!errors.email ? "#808080" : 'red'}
           value={formData.email}
           onChangeText={text => setFormData({...formData, email: text})}
-          onBlur={() => validateForm(1)}
-          onFocus={() => clearError('email')}
+          onFocus={() => clearError('email', errors, setErrors)}
           style={!errors.email ? styles.input : styles.errorInput}
         />
         {
@@ -56,8 +56,7 @@ export const Step1 = ({
           value={formData.password}
           onChangeText={text => setFormData({ ...formData, password: text })}
           onPressIn={()=> setFormData({ ...formData, password: '', confirmPassword: '' })}
-          onBlur={() => validateForm(1)}
-          onFocus={() => clearError('password')}
+          onFocus={() => clearError('password', errors, setErrors)}
           style={!errors.password ? styles.input : styles.errorInput}
         />
         {
@@ -75,8 +74,7 @@ export const Step1 = ({
           value={formData.confirmPassword}
           onChangeText={text => setFormData({ ...formData, confirmPassword: text })}
           onPressIn={()=> setFormData({ ...formData, confirmPassword: '' })}
-          onBlur={() => validateForm(1)}
-          onFocus={() => clearError('confirmPassword')}
+          onFocus={() => clearError('confirmPassword', errors, setErrors)}
           style={!errors.password ? styles.input : styles.errorInput}
         />
         {

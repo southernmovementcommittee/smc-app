@@ -10,6 +10,7 @@ export const Step3 = ({
   validateForm,
   formData,
   setFormData,
+  setErrors,
   errors,
   clearError,
   createUserObj
@@ -24,7 +25,7 @@ export const Step3 = ({
    */
   const handleBlur = (inputErrorType) => {
     validateForm(3);
-    clearError(inputErrorType);
+    clearError(inputErrorType, errors, setErrors);
   }
 
   /**
@@ -58,7 +59,7 @@ export const Step3 = ({
       dateOfBirth: selectedDate.toDateString(),
       showDatePicker: false,
     });
-    clearError('dateOfBirth');
+    clearError('dateOfBirth',  errors, setErrors);
   };
 
   return (
@@ -78,8 +79,7 @@ export const Step3 = ({
           placeholderTextColor={!errors.occupation ? '#808080' : 'red'}
           style={!errors.occupation ? styles.input : styles.errorInput}
           value={formData.occupation}
-          onFocus={() => clearError('occupation')}
-          onBlur={() => handleBlur('occupation')}
+          onFocus={() => clearError('occupation', errors, setErrors)}
           onChangeText={text => setFormData({ ...formData, occupation: text})}
         />
         <Pressable style={styles.pressable} onPress={openAndroidDatePicker}>
@@ -87,8 +87,7 @@ export const Step3 = ({
             placeholder={!errors.dateOfBirth ? 'DATE OF BIRTH' : errors.dateOfBirth}
             placeholderTextColor={!errors.dateOfBirth ? '#808080' : 'red'}
             value={formData.dateOfBirth}
-            onFocus={() => clearError('dateOfBirth')}
-            onBlur={() => handleBlur('dateOfBirth')}
+            onFocus={() => clearError('dateOfBirth', errors, setErrors)}
             style={!errors.dateOfBirth ? styles.input : styles.errorInput}
             editable={false}
             onPressIn={() => setFormData({ ...formData, showDatePicker: true})}
@@ -107,8 +106,7 @@ export const Step3 = ({
           multiline={true}
           numberOfLines={4}
           style={isAndroid ? styles.androidTextArea : styles.textArea}
-          onFocus={() => clearError('bio')}
-          onBlur={() => handleBlur('bio')}
+          onFocus={() => clearError('bio', errors, setErrors)}
           value={formData.bio}
           onChangeText={text => setFormData({ ...formData, bio: text})}
         />

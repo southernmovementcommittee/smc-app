@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 
 
 import { Navbar } from './src/components/Navbar';
+import { AdminDashStackNavigator } from './src/routes/AdminDashStackNavigator';
 
 export const AuthContext = React.createContext();
 
@@ -19,9 +20,10 @@ export default function App() {
         isAuth ? (
             <Navbar setIsAuth={setIsAuth} user={user} />
         ) : (
-            <AuthStackNavigator setIsAuth={setIsAuth} setUser={setUser} />
+              <AdminDashStackNavigator />
           )
         }
+        {/* <AuthStackNavigator setIsAuth={setIsAuth} setUser={setUser} /> */}
       </SafeAreaView>
     </NavigationContainer>
   );
