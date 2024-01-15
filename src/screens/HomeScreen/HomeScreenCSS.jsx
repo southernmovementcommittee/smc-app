@@ -40,5 +40,19 @@ export const styles = StyleSheet.create({
     color: '#000',
     fontSize: 18,
     fontWeight: 'bold'
-  }
+  },
+  overlayText: {
+    color: '#FFD600',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 400,
+    height: 400
+  },
 });
