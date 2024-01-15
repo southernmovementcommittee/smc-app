@@ -44,32 +44,46 @@ export const styles = StyleSheet.create({
   overlayText: {
     color: '#FFD600',
     fontSize: 24,
+    margin: 20,
     fontWeight: 'bold',
+  },
+  imageContainer: {
+    position: 'relative',
+    opacity: 0.5,
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
     justifyContent: 'center',
-    alignItems: 'center',
   },
   image: {
     width: 400,
-    height: 400
+    height: 400,
   },
-  yellowBlock: {
+  logo: {
+    width: 30,
+    height: 30,
+    marginLeft: 20,
+  },
+  yellowCard: {
     backgroundColor:'#FFD600',
     width: 400,
     height: 400,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 10,
+    marginBottom: 30,
   },
-  yellowBlockText: {
+  topNav: {
+    backgroundColor: '#FFD600',
+    width: 400,
+    height: 40,
+  },
+  yellowCardText: {
     color:'#000',
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'left',
     },
-    yellowBlockSublineText: {
+    yellowCardSublineText: {
       color:'#000',
       fontSize: 12,
       fontWeight: 'bold'
