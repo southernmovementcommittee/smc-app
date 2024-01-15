@@ -55,4 +55,23 @@ export const styles = StyleSheet.create({
     width: 400,
     height: 400
   },
+  yellowBlock: {
+    backgroundColor:'#FFD600',
+    width: 400,
+    height: 400,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  yellowBlockText: {
+    color:'#000',
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'left',
+    },
+    yellowBlockSublineText: {
+      color:'#000',
+      fontSize: 12,
+      fontWeight: 'bold'
+    }
 });
