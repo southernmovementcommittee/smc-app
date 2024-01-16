@@ -68,9 +68,9 @@ export const styles = StyleSheet.create({
     backgroundColor:'#FFD600',
     width: 400,
     height: 400,
-    alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 30,
+    padding: 10,
   },
   topNav: {
     backgroundColor: '#FFD600',
@@ -79,13 +79,17 @@ export const styles = StyleSheet.create({
   },
   yellowCardText: {
     color:'#000',
-    fontSize: 30,
+    fontSize: 50,
     fontWeight: 'bold',
     textAlign: 'left',
+    marginLeft: 30,
+    lineHeight: 60,
     },
     yellowCardSublineText: {
       color:'#000',
       fontSize: 12,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      marginLeft: 30,
+      marginRight: 20,
     }
 });
