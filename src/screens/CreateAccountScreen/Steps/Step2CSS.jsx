@@ -68,7 +68,6 @@ export const styles = StyleSheet.create({
   },
   formContainer2: {
     flex: 1,
-    // justifyContent: 'flex-start',
     flexDirection: 'column',
     alignItems: 'flex-start',
     minWidth: 300,
@@ -76,6 +75,12 @@ export const styles = StyleSheet.create({
     // borderStyle: 'solid',
     // borderWidth: 2,
     // borderColor: 'black',
+  },
+  emptyContainer: {
+    minWidth: 300,
+  },
+  inputHidden: {
+    display: 'none',
   },
   text2: {
     fontSize: 22,

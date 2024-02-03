@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, Text, TouchableOpacity, Image } from 'react-native';
 import CheckBox from 'expo-checkbox';
 
@@ -15,7 +15,7 @@ export const Step2 = ({
   clearError,
   goToStep3
 }) => {
-
+  const [cityStateZipFocus, setCityStateZipFocus] = useState(false);
   /**
    * 
    * @param {string} option
@@ -34,9 +34,18 @@ export const Step2 = ({
       let currentUserData = { ...formData };
       const { selectedOption: isBlack, ...rest } = currentUserData;
       currentUserData = { isBlack, ...rest };
-      console.log('userData: ', currentUserData);
       goToStep3();
     }
+  }
+
+  const handleCityStateZipFocus = (inputErrorType) => {
+    setCityStateZipFocus(true);
+    clearError(inputErrorType);
+  }
+
+  const handleBlur = (inputErrorType) => {
+    setCityStateZipFocus(false);
+    clearError(inputErrorType)
   }
 
   return (
@@ -46,6 +55,7 @@ export const Step2 = ({
       </View>
       <Text style={styles.header2}>CREATE NEW ACCOUNT</Text>
       <View style={styles.formContainer2}>
+        <View style={!cityStateZipFocus ? styles.emptyContainer : styles.inputHidden}>
         <View style={styles.shortInputContainer2}>
           <TextInput 
             placeholder={!errors.firstName ? "FIRST NAME" : errors.firstName}

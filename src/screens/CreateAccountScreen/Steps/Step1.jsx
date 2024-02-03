@@ -1,4 +1,4 @@
-import { View, TextInput, Text, TouchableOpacity, Image  } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity, Image, KeyboardAvoidingView  } from 'react-native';
 
 import { styles } from './Step1CSS';
 
@@ -25,13 +25,13 @@ export const Step1 = ({
   }
 
   return (
-    <>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={smclogo} />
       </View>
-      {/* <View style={!inputFocused ? styles.imageContainer : styles.inputFocusedImageContainer}>
-        <Image style={!inputFocused ? styles.image : styles.inputFocusedImage} source={smclogo} />
-      </View> */}
       <Text style={styles.header} >CREATE NEW ACCOUNT</Text>
       <View style={styles.formContainer}>
         <TextInput
@@ -89,6 +89,6 @@ export const Step1 = ({
           <Text style={styles.primaryButtonText} >Continue to Step 2</Text>
         </TouchableOpacity>
       </View>
-    </>
+    </KeyboardAvoidingView>
   )
 };

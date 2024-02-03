@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, TextInput, Text, TouchableOpacity, Image, Pressable, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { View, TextInput, Text, TouchableOpacity, Image, Pressable, Platform, ScrollView } from 'react-native';
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 // import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
@@ -15,7 +15,7 @@ export const Step3 = ({
   clearError,
   createUserObj
 }) => {
-
+  const [bioIsFocused, setBioIsFocused] = useState(false);
   const isAndroid = Platform.OS === 'android';
 
   /**
@@ -28,6 +28,10 @@ export const Step3 = ({
     clearError(inputErrorType, errors, setErrors);
   }
 
+  const handleBioFocus = () => {
+    setBioIsFocused(true);
+    clearError('bio');
+  }
   /**
    * @description After running validation for the inputs currently being displayed, this function removes the confirm password from the formData object and then passes that updated object to the createUserObj function.
    */
@@ -76,6 +80,7 @@ export const Step3 = ({
         <Text style={styles.accentHeader}>Upload </Text>your image here
       </Text>
       <View style={styles.formContainer}>
+        <View style={!bioIsFocused ? styles.formContainer : styles.inputHidden}>
         <TextInput
           placeholder={!errors.occupation ? 'OCCUPATION' : errors.occupation}
           placeholderTextColor={!errors.occupation ? '#808080' : 'red'}
@@ -101,7 +106,8 @@ export const Step3 = ({
           mode="date"
           onConfirm={handleConfirm}
           onCancel={() => setFormData({ ...formData, showDatePicker: false})}
-        />
+          />
+          </View>
         <TextInput
           placeholder="BIO"
           placeholderTextColor={!errors.bio ? '#808080' : 'red'}
