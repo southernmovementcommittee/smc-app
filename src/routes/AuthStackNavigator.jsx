@@ -17,9 +17,6 @@ export const AuthStackNavigator = ({setIsAuth, setUser}) => {
       <Stack.Screen name="CreateAccount" options={{ headerShown: false }}>
         {props => <CreateAccountScreen {...props} setIsAuth={setIsAuth} setUser={setUser} />}
       </Stack.Screen>
-      <Stack.Screen name="AdminDashboard" options={{ headerShown: false }}>
-        {props => <AdminDashboardScreen {...props} setIsAuth={setIsAuth} setUser={setUser} />}
-      </Stack.Screen>
     </Stack.Navigator>
   );
 }

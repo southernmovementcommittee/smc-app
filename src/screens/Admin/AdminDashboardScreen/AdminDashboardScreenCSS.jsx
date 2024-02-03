@@ -51,10 +51,12 @@ export const styles = StyleSheet.create({
     height: 60,
     justifyContent: 'center',
     backgroundColor: '#000',
+    // backgroundColor: '#FFD600',
     alignItems: 'center',
   },
   buttonText: {
     color: '#FFD600',
+    // color: '#000',
     fontSize: 26,
     fontWeight: 'bold',
   }

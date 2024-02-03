@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Text, TouchableOpacity, Image, Pressable, Platform, ScrollView } from 'react-native';
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+// import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { styles } from './Step3CSS';
 const smclogo = require('../../../assets/images/smclogo.png');
 
@@ -10,6 +10,7 @@ export const Step3 = ({
   validateForm,
   formData,
   setFormData,
+  setErrors,
   errors,
   clearError,
   createUserObj
@@ -23,8 +24,8 @@ export const Step3 = ({
    * @description Validates the inputs currently being displayed and then clears the errors for whichever input is currently being interacted with. 
    */
   const handleBlur = (inputErrorType) => {
-    setBioIsFocused(false);
-    clearError(inputErrorType);
+    validateForm(3);
+    clearError(inputErrorType, errors, setErrors);
   }
 
   const handleBioFocus = () => {
@@ -47,7 +48,9 @@ export const Step3 = ({
    */
   const openAndroidDatePicker = () => {
     if (isAndroid) {
-      setFormData({ ...formData, showDatePicker: true})
+      console.log('I ran...')
+      setFormData({ ...formData, showDatePicker: true });
+      console.log(formData.showDatePicker);
     }
   }
 
@@ -62,16 +65,16 @@ export const Step3 = ({
       dateOfBirth: selectedDate.toDateString(),
       showDatePicker: false,
     });
-    clearError('dateOfBirth');
+    clearError('dateOfBirth',  errors, setErrors);
   };
 
   return (
     <>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={smclogo} />
-        <View style={styles.arrowContainer}>
+        {/* <View style={styles.arrowContainer}>
           <FontAwesomeIcon name='arrow-up' size={45} color='#000' />
-        </View>
+        </View> */}
       </View>
       <Text style={styles.header}>
         <Text style={styles.accentHeader}>Upload </Text>your image here
@@ -83,8 +86,7 @@ export const Step3 = ({
           placeholderTextColor={!errors.occupation ? '#808080' : 'red'}
           style={!errors.occupation ? styles.input : styles.errorInput}
           value={formData.occupation}
-          onFocus={() => clearError('occupation')}
-          onBlur={() => handleBlur('occupation')}
+          onFocus={() => clearError('occupation', errors, setErrors)}
           onChangeText={text => setFormData({ ...formData, occupation: text})}
         />
         <Pressable style={styles.pressable} onPress={openAndroidDatePicker}>
@@ -92,8 +94,7 @@ export const Step3 = ({
             placeholder={!errors.dateOfBirth ? 'DATE OF BIRTH' : errors.dateOfBirth}
             placeholderTextColor={!errors.dateOfBirth ? '#808080' : 'red'}
             value={formData.dateOfBirth}
-            onFocus={() => clearError('dateOfBirth')}
-            onBlur={() => handleBlur('dateOfBirth')}
+            onFocus={() => clearError('dateOfBirth', errors, setErrors)}
             style={!errors.dateOfBirth ? styles.input : styles.errorInput}
             editable={false}
             onPressIn={() => setFormData({ ...formData, showDatePicker: true})}
@@ -113,8 +114,7 @@ export const Step3 = ({
           multiline={true}
           numberOfLines={4}
           style={isAndroid ? styles.androidTextArea : styles.textArea}
-          onFocus={handleBioFocus}
-          onBlur={() => handleBlur('bio')}
+          onFocus={() => clearError('bio', errors, setErrors)}
           value={formData.bio}
           onChangeText={text => setFormData({ ...formData, bio: text})}
         />

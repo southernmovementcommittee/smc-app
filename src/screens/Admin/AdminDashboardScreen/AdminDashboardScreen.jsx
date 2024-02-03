@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { styles } from './AdminDashboardScreenCSS';
 import EventCard from '../../../components/Admin/EventCard/EventCard';
 
-const AdminDashboardScreen = () => {
+const AdminDashboardScreen = ({navigation}) => {
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator contentContainerStyle={styles.scrollContainer}>
@@ -31,7 +32,7 @@ const AdminDashboardScreen = () => {
         <EventCard />
         <EventCard />
       </ScrollView>
-      <TouchableOpacity style={styles.buttonContainer} title="Create New Event" onPress={() => console.log('create new event pressed!')}>
+      <TouchableOpacity style={styles.buttonContainer} title="Create New Event" onPress={() => navigation.navigate('CreateEvent') }>
         <Text style={styles.buttonText}>Create New Event</Text>
       </TouchableOpacity>
     </View>
