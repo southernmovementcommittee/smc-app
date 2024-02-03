@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-import { View, Animated, Platform, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { View, Animated, Platform, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, ScrollView, Text } from 'react-native';
 
 import { Step1 } from './Steps/Step1';
 import { Step2 } from './Steps/Step2';
@@ -332,20 +332,14 @@ const CreateAccountScreen = ({ setIsAuth, setUser }) => {
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      {/* This component keeps the keyboard from obscuring the view of inputs. */}
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.container}
-      >
-        <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.container}>
           {renderStep()}
           <View style={isAndroid ? styles.androidPaginationContainer : styles.paginationContainer}>
             {[1, 2, 3].map((step, index) => (
               <PaginationDot key={step} animatedValues={animatedValues} index={index} selected={step === currentStep}/>
             ))}
           </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
+      </View>
     </TouchableWithoutFeedback>
   );
 };
