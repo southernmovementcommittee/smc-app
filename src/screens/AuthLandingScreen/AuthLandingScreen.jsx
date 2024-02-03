@@ -9,6 +9,9 @@ const AuthLandingScreen = ({ navigation }) => {
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={smclogo} />
       </View>
+        <TouchableOpacity style={styles.primaryButton} title="Admin Dashboard" onPress={() => navigation.navigate('AdminDashboard')}>
+          <Text style={styles.primaryButtonText}>Admin Dashboard</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.secondaryButton} title="Login" onPress={() => navigation.navigate('Login')}>
           <Text style={styles.secondaryButtonText}>LOG IN</Text>
         </TouchableOpacity>
