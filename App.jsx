@@ -24,6 +24,7 @@ export default function App() {
           )
         }
         {/* <AuthStackNavigator setIsAuth={setIsAuth} setUser={setUser} /> */}
+        {/* <AdminDashStackNavigator /> */}
       </SafeAreaView>
     </NavigationContainer>
   );

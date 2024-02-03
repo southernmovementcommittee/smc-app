@@ -143,7 +143,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     minHeight: 150,
     minWidth: 300,
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,

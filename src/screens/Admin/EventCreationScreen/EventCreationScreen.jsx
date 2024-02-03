@@ -1,16 +1,19 @@
-import DateTimePickerModal from "react-native-modal-datetime-picker";
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { useState, useEffect } from "react";
-import {Pressable, View, Text, TextInput, TouchableOpacity, Image, ScrollView, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Platform } from 'react-native'
+import {Pressable, View, Text, TextInput, TouchableOpacity, Image, Platform } from 'react-native'
 import { formInputs } from "../../../constants/createEventFormInputs";
 import { clearError, validateForm } from "../../../helpers/CreateEvent/helpers";
 
-
 import { styles } from './EventCreationScreenCSS';
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+
+import KeyboardAvoidingWrapper from "../../../components/KeyboardAvoidingView";
+
+const imageIcon = require('../../../assets/image.png');
 
 const EventCreationScreen = ({navigation}) => {
   const [formData, setFormData] = useState(formInputs);
   const [errors, setErrors] = useState(formInputs);
+  const [date, setDate] = useState(new Date());
 
 const isAndroid = Platform.OS === 'android';
 
@@ -30,9 +33,11 @@ const isAndroid = Platform.OS === 'android';
    * @description Takes in a date object as an arguement and then sets to the dateOfBirth property as a string value in the formData object. It then clears the error state for any dateOfBirth errors. 
    */
   const handleDateConfirm = (selectedDate) => {
+    setDate(selectedDate);
+    console.log('selectedDate: ', selectedDate);
     setFormData({
       ...formData,
-      date: selectedDate.toDateString(),
+      date: selectedDate,
       showDatePicker: false,
     });
     clearError('date',  errors, setErrors);
@@ -83,16 +88,15 @@ const isAndroid = Platform.OS === 'android';
   useEffect(() => {}, [formData]);
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-    <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={{flex: 1}}
-      >
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.container}>
-          <View style={styles.imageContainer}>
-            <FontAwesomeIcon icon="fa-regular fa-image" />
-            <Text style={{color: 'white'}}>Upload Image Here</Text>
-          </View>
+    <KeyboardAvoidingWrapper>
+      <View style={styles.container}>
+        <View style={styles.imageContainer}>
+          <Image source={imageIcon} style={{width: 50, height: 50}} />
+          <Text style={{fontWeight: 'bold', fontSize: 24, color: 'white'}}>Upload</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 24 }}>
+             Image Here
+          </Text>
+        </View>
         
         <View style={styles.formContainer}>
           <TextInput
@@ -118,12 +122,15 @@ const isAndroid = Platform.OS === 'android';
               autoFocus={false}
             />
           </Pressable>
-          <DateTimePickerModal
-            isVisible={formData.showDatePicker}
-            mode="date"
-            onConfirm={handleDateConfirm}
-            onCancel={() => setFormData({ ...formData, showDatePicker: false})}
+          {formData.showDatePicker && (
+            <DateTimePicker
+              mode='date'
+              value={date}
+              display='default'
+              onChange={handleDateConfirm}
+              // onCancel={() => setFormData({ ...formData, showDatePicker: false})}
             />
+          )}
           <Pressable style={styles.pressable} onPress={() => openAndroidDatePicker('showStartTimePicker')}>
             <TextInput
               placeholder={!errors.startTime ? "Start Time" : errors.startTime}
@@ -137,15 +144,18 @@ const isAndroid = Platform.OS === 'android';
               autoFocus={false}
             />
           </Pressable>
-          <DateTimePickerModal
-            isVisible={formData.showStartTimePicker}
-            mode="time"
-            onConfirm={(e) => {
-              console.log(e)
-              handleTimeConfirm(e, 'startTime')
-            }}
-            onCancel={() => setFormData({ ...formData, showStartTimePicker: false})}
-          />
+          {formData.showStartTimePicker && (
+            <DateTimePicker
+              mode='time'
+              value={formData.startTime}
+              display='default'
+              onChange={(e) => {
+                console.log(e)
+                handleTimeConfirm(e, 'startTime')
+              }}
+              // onCancel={() => setFormData({ ...formData, showStartTimePicker: false })}
+            />
+          )}
           <Pressable style={styles.pressable} onPress={() => openAndroidDatePicker('showEndTimePicker')}>
             <TextInput
               placeholder={!errors.endTime ? "End Time" : errors.endTime}
@@ -159,12 +169,15 @@ const isAndroid = Platform.OS === 'android';
               autoFocus={false}
             />
           </Pressable>
-            <DateTimePickerModal
-            isVisible={formData.showEndTimePicker}
-            mode="time"
-            onConfirm={(e) => handleTimeConfirm(e, 'endTime')}
-            onCancel={() => setFormData({ ...formData, showEndTimePicker: false})}
+          {formData.showEndTimePicker && (
+            <DateTimePicker
+              mode='time'
+              value={formData.endTime}
+              display='default'
+              // onConfirm={(e) => handleTimeConfirm(e, 'endTime')}
+              // onCancel={() => setFormData({ ...formData, showEndTimePicker: false })}
             />
+          )}
           <TextInput
             placeholder={!errors.location ? "Location" : errors.location}
             placeholderTextColor={!errors.location ? "lightgray" : 'red'}
@@ -216,11 +229,9 @@ const isAndroid = Platform.OS === 'android';
             <Text style={styles.primaryButtonText}>Done</Text>
           </TouchableOpacity>
         </View>
-      </ScrollView>
-      </KeyboardAvoidingView>
-    </TouchableWithoutFeedback>
+        </View>
+      </KeyboardAvoidingWrapper>
   )
-
 };
 
 export default EventCreationScreen;

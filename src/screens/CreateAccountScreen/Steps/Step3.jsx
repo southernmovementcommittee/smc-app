@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TextInput, Text, TouchableOpacity, Image, Pressable, Platform } from 'react-native';
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+// import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { styles } from './Step3CSS';
 const smclogo = require('../../../assets/images/smclogo.png');
 
@@ -44,7 +44,9 @@ export const Step3 = ({
    */
   const openAndroidDatePicker = () => {
     if (isAndroid) {
-      setFormData({ ...formData, showDatePicker: true})
+      console.log('I ran...')
+      setFormData({ ...formData, showDatePicker: true });
+      console.log(formData.showDatePicker);
     }
   }
 
@@ -66,9 +68,9 @@ export const Step3 = ({
     <>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={smclogo} />
-        <View style={styles.arrowContainer}>
+        {/* <View style={styles.arrowContainer}>
           <FontAwesomeIcon name='arrow-up' size={45} color='#000' />
-        </View>
+        </View> */}
       </View>
       <Text style={styles.header}>
         <Text style={styles.accentHeader}>Upload </Text>your image here
